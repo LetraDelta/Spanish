@@ -785,7 +785,7 @@
     </div>
 
     <div class="intro-content">
-      <p class="subtitle">TRADUCIENDO CAPÍTULO 5.</p>
+      <p class="subtitle">DELTARUNE AL ESPAÑOL NEUTRO.</p>
 
       <div class="countdown-card" id="countdown-card">
         <p class="countdown-title">▲ El parche sale en</p>
@@ -866,8 +866,9 @@
       <div class="chapter-card">
         <img src="img/screenshot.png" alt="Capítulos 1 al 4">
         <h3>Capítulos 1, 2, 3 y 4</h3>
-        <p id="chapter5-note">Próximamente capítulo 5.</p>
-        <a href="#" id="chapter5-download" class="download-button" title="Disponible próximamente">Próximamente</a>
+        <p id="chapter5-note">¡Ya disponible! Capítulo 5 traducido.</p>
+        <a href="https://drive.google.com/file/d/1_y1GxX7R6zsJwO8CvgABYoT-8w027SSr/view?usp=drive_link" id="chapter5-download" class="download-button ready" target="_blank" rel="noopener noreferrer">Descarga Normal</a>
+        <a href="https://drive.google.com/file/d/1pwIk33xQsOujCemXpbfCRkL62O7-C-1z/view?usp=drive_link" id="chapter5-download-bordes" class="download-button ready" target="_blank" rel="noopener noreferrer" style="margin-top:10px;">Descarga con bordes</a>
       </div>
     </div>
   </section>
@@ -1077,7 +1078,7 @@
     // ── Contador hasta el lanzamiento del parche ──
     (function () {
         // Sábado 11 de julio de 2026, 19:00 (UTC-4). Ajustar si la hora/zona cambia.
-        const targetDate = new Date('2026-07-11T03:11:30-04:00').getTime();
+        const targetDate = new Date('2026-07-11T18:33:00-04:00').getTime();
 
         // ⚠️ REEMPLAZAR por el link real de descarga cuando lo tengas (una sola vez, se usa en los dos lugares).
         const DOWNLOAD_LINK = '';
@@ -1090,21 +1091,6 @@
         // Detecta si la página ya se cargó DESPUÉS de la fecha (o sea, ya se "refrescó").
         const yaEstabaDisponibleAlCargar = Date.now() >= targetDate;
 
-        // Botón de descarga de la sección "Descargas".
-        function activarBotonDescargas() {
-            const boton = document.getElementById('chapter5-download');
-            const nota  = document.getElementById('chapter5-note');
-            if (boton) {
-                boton.href = DOWNLOAD_LINK;
-                boton.textContent = 'Descargar';
-                boton.title = 'Descargar capítulo 5';
-                boton.classList.add('ready');
-            }
-            if (nota) {
-                nota.textContent = '¡Ya disponible! Capítulo 5 traducido.';
-            }
-        }
-
         // Estado final: la fecha ya pasó y la página se recargó → mostrar la tarjeta completa.
         function mostrarListo() {
             if (card) {
@@ -1113,7 +1099,8 @@
                         'style="max-width:200px;width:100%;border-radius:4px;image-rendering:pixelated;margin:0 auto 14px;display:block;">' +
                     '<h3 style="font-family:\'Determination\',monospace;font-size:0.95em;color:#e0e0e0;letter-spacing:1px;margin:0 0 8px;">Capítulos 1, 2, 3 y 4</h3>' +
                     '<p style="font-size:0.82em;color:#aaa;margin:0 0 14px;">¡Ya disponible! Capítulo 5 traducido.</p>' +
-                    '<a href="' + DOWNLOAD_LINK + '" class="download-button ready">Descargar</a>';
+                    '<a href="https://drive.google.com/file/d/1_y1GxX7R6zsJwO8CvgABYoT-8w027SSr/view?usp=drive_link" class="download-button ready" target="_blank" rel="noopener noreferrer">Descarga Normal</a>' +
+                    '<a href="https://drive.google.com/file/d/1pwIk33xQsOujCemXpbfCRkL62O7-C-1z/view?usp=drive_link" class="download-button ready" target="_blank" rel="noopener noreferrer" style="margin-top:10px;">Descarga con bordes</a>';
             }
         }
 
@@ -1122,7 +1109,6 @@
             if (card) {
                 card.innerHTML = '<p class="countdown-refresh">¡Refresque la página!</p>';
             }
-            activarBotonDescargas();
         }
 
         if (yaEstabaDisponibleAlCargar) {
