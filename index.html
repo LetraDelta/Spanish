@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Letra Delta - Deltarune al Español</title>
+  <link rel="icon" href="favicon.png" type="image/png">
+  <style>
+    @font-face {
+      font-family: 'Determination';
+      src: url('fonts/DeterminationMonoWebRegular-Z5oq.ttf') format('truetype');
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: sans-serif;
+      color: white;
+      min-height: 100vh;
+      background-color: #000;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      padding-bottom: 61px;
+    }
+
+    /* Clase para bloquear el scroll en la intro */
+    body.bloquear-scroll {
+      overflow: hidden !important;
+    }
+
+    /* Clase para desactivar clicks en los botones antes de tiempo */
+    .desactivado {
+      pointer-events: none !important;
+      opacity: 0.5;
+    }
+
+    /* ── INTRO SECUENCIAL ── */
+
+    /* ── Pantalla de inicio (click to continue) ── */
+    #splash {
+      position: fixed;
+      inset: 0;
+      background: #000;
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      gap: 20px;
+    }
+
+    .splash-logo {
+      width: min(480px, 80vw);
+      image-rendering: pixelated;
+      opacity: 0.95;
+      filter: drop-shadow(0 0 24px rgba(255,255,255,0.18));
+    }
+
+    .splash-bienvenida {
+      font-family: 'Determination', monospace;
+      font-size: 0.88em;
+      color: #cccccc;
+      letter-spacing: 1.5px;
+      line-height: 2;
+      text-align: center;
+      max-width: 560px;
+    }
+
+    .splash-continuar {
+      font-family: 'Determination', monospace;
+      font-size: 0.82em;
+      color: #ffffff;
+      letter-spacing: 2px;
+      text-align: center;
+      animation: parpadeo 1.4s ease-in-out infinite;
+      margin-top: 8px;
+    }
+
+    @keyframes parpadeo {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.2; }
+    }
+
+    #splash.ocultar {
+      animation: splash-out 0.6s ease forwards;
+    }
+
+    @keyframes splash-out {
+      to { opacity: 0; pointer-events: none; }
+    }
+
+    /* Navbar: invisible por defecto, transición al quitar .oculta */
+    .navbar {
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+    .navbar.visible {
+      opacity: 1;
+    }
+
+    /* Flores: invisibles por defecto, JS agrega .visible para disparar animación */
+    body::before,
+    body::after {
+      opacity: 0;
+    }
+    body.flores-animar::before {
+      animation: flores-izq 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    body.flores-animar::after {
+      animation: flores-der 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    body.flores-ready::before {
+      opacity: 1;
+    }
+    body.flores-ready::after {
+      opacity: 1;
+    }
+
+    /* Intro-content: invisible, aparece con clase tras el video */
+    #page-inicio .intro-content {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    #page-inicio .intro-content.visible {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+    }
+
+    /* ── ANIMACIONES FLORES ARREGLADAS ── */
+    @keyframes flores-izq {
+      from { transform: translateX(-120px); opacity: 0; }
+      to   { transform: translateX(0);      opacity: 1; }
+    }
+    @keyframes flores-der {
+      from { transform: translateX(120px) scaleX(-1); opacity: 0; }
+      to   { transform: translateX(0)     scaleX(-1); opacity: 1; }
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      top: 80px;
+      width: 620px;
+      height: calc(100vh - 80px);
+      background: url("img/ch5-flowers.png") no-repeat top center;
+      background-size: 620px auto;
+      pointer-events: none;
+      z-index: 0;
+      filter: brightness(1.15) saturate(1.1);
+      image-rendering: pixelated;
+      image-rendering: -moz-crisp-edges;
+      image-rendering: crisp-edges;
+    }
+
+    body::before { left: -170px; }
+    body::after { right: -170px; }
+
+    /* En pantallas chicas, las flores se achican proporcionalmente
+       para que no se amontonen/superpongan en el centro */
+    @media (max-width: 700px) {
+      body::before,
+      body::after {
+        width: 42vw;
+        background-size: 42vw auto;
+        top: 80px;
+        height: calc(100vh - 80px);
+      }
+      body::before { left: -14vw; }
+      body::after { right: -14vw; }
+    }
+
+    /* La navbar achica su altura a 64px en móvil chico: las flores
+       deben empezar justo debajo, no taparse detrás de ella */
+    @media (max-width: 480px) {
+      body::before,
+      body::after {
+        top: 64px;
+        height: calc(100vh - 64px);
+      }
+    }
+
+    /* Parallax post-animación (Mantiene el scaleX invertido en la derecha) */
+    body.flores-ready::before {
+      transform: translateY(var(--flores-y, 0px));
+    }
+    body.flores-ready::after {
+      transform: translateY(var(--flores-y, 0px)) scaleX(-1);
+    }
+
+    /* ── Navbar Superior ── */
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #000000;
+      padding: 0 20px;
+      height: 80px;
+      width: 100%;
+      z-index: 100;
+      position: relative;
+    }
+
+    .logo-button {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 101;
+      text-decoration: none;
+    }
+
+    .logo-button img {
+      height: 60px;
+      image-rendering: pixelated;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+      display: block;
+    }
+
+    .logo-button img:hover { transform: scale(1.07); }
+
+    .nav-left {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .nav-button {
+      background: none;
+      border: none;
+      color: white;
+      font-family: 'Determination', monospace;
+      font-weight: bold;
+      font-size: 1.15em;
+      letter-spacing: 1px;
+      cursor: pointer;
+      padding: 6px 2px;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .nav-button:hover,
+    .nav-button.active {
+      color: #ffffff;
+      border-bottom-color: #ffffff;
+    }
+
+    .nav-button:disabled,
+    .nav-button.nav-disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    .nav-label-short { display: none; }
+
+    /* ── Navbar responsive (evita que se rompa en móvil) ── */
+    @media (max-width: 480px) {
+      .navbar { padding: 0 10px; height: 64px; justify-content: center; }
+      .logo-button { display: none; }
+      .nav-left { gap: 16px; }
+      .nav-button {
+        font-size: 0.85em;
+        letter-spacing: 0.5px;
+        padding: 4px 2px;
+        white-space: nowrap;
+      }
+      .nav-label-full { display: none; }
+      .nav-label-short { display: inline; }
+    }
+
+    /* Las flores empiezan debajo del navbar (que en móvil mide 64px) */
+    @media (max-width: 480px) {
+      body::before,
+      body::after {
+        top: 64px;
+        height: calc(100vh - 64px);
+      }
+    }
+
+    /* ── Páginas (SPA) ── */
+    .page {
+      display: none;
+      flex: 1;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+    .page.active { display: flex; }
+
+    /* ── INICIO ── */
+    #page-inicio {
+      justify-content: center;
+      min-height: calc(100vh - 80px - 61px);
+      text-align: center;
+      padding: 40px 20px 40px;
+    }
+
+    /* ── Logo video y wrapper ── */
+    .logo-video-wrap {
+      width: 100%;
+      max-width: 560px;
+      min-width: 240px;
+      position: relative;
+    }
+
+    .logo-video {
+      width: 100%;
+      height: auto;
+      display: block;
+      image-rendering: pixelated;
+    }
+
+    .logo-png {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: auto;
+      image-rendering: pixelated;
+      opacity: 0;
+      transition: opacity 1.4s ease;
+      pointer-events: none;
+    }
+
+    .subtitle {
+      font-family: 'Determination', monospace;
+      font-size: 1.4em;
+      margin-top: 12px;
+      color: #ffffff;
+      letter-spacing: 2px;
+    }
+
+    .section-label {
+      font-family: 'Determination', monospace;
+      font-size: 1em;
+      color: #aaa;
+      margin-top: 28px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    /* ── CONTADOR DEL PARCHE ── */
+    .countdown-card {
+      margin-top: 24px;
+      max-width: 480px;
+      width: 100%;
+      background-color: rgba(8, 8, 12, 0.6);
+      border: 1px solid rgba(58, 110, 255, 0.35);
+      border-radius: 6px;
+      padding: 20px 24px 24px;
+      text-align: center;
+    }
+
+    .countdown-title {
+      font-family: 'Determination', monospace;
+      font-size: 0.95em;
+      color: #fff;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .countdown-timer {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+    }
+
+    .countdown-unit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 52px;
+    }
+
+    .countdown-number {
+      font-family: 'Determination', monospace;
+      font-size: 1.7em;
+      color: #ffffff;
+      text-shadow: 0 0 10px rgba(58,110,255,0.6);
+      line-height: 1;
+    }
+
+    .countdown-label {
+      font-family: 'Determination', monospace;
+      font-size: 0.62em;
+      color: #888;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-top: 6px;
+    }
+
+    .countdown-note {
+      font-family: 'Determination', monospace;
+      font-size: 0.7em;
+      color: #666;
+      font-style: italic;
+      margin-top: 14px;
+      letter-spacing: 0.5px;
+    }
+
+    .countdown-refresh {
+      font-family: 'Determination', monospace;
+      font-size: 1.5em;
+      color: #ffe14d;
+      text-shadow: 0 0 12px rgba(255, 225, 77, 0.5);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 14px 0;
+      margin: 0;
+    }
+
+    @media (max-width: 480px) {
+      .countdown-timer { gap: 8px; }
+      .countdown-unit { min-width: 44px; }
+      .countdown-number { font-size: 1.4em; }
+    }
+
+    /* ── VIDEO Trailer ── */
+    .video-wrapper {
+      margin-top: 20px;
+      max-width: 480px;
+      width: 100%;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .video-border {
+      position: relative;
+      padding: 6px;
+      background: transparent;
+      box-shadow:
+        0 0 0 2px #3a6eff,
+        0 0 0 4px #000,
+        0 0 0 6px #3a6eff;
+      transition: box-shadow 0.25s ease;
+    }
+
+    .video-wrapper:hover .video-border {
+      box-shadow:
+        0 0 0 2px #ffffff,
+        0 0 0 4px #000,
+        0 0 0 6px #ffffff;
+    }
+
+    .video-container {
+      overflow: hidden;
+      width: 100%;
+    }
+
+    .video-container iframe {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16/9;
+      height: auto;
+    }
+
+    /* ── PROGRESO ── */
+    .progress-card {
+      margin-top: 32px;
+      max-width: 480px;
+      width: 100%;
+      background-color: rgba(8, 8, 12, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 6px;
+      padding: 28px 32px;
+      text-align: left;
+    }
+
+    .progress-title {
+      font-family: 'Determination', monospace;
+      font-size: 1em;
+      color: #fff;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+
+    .progress-subtitle {
+      font-family: 'Determination', monospace;
+      font-size: 0.75em;
+      color: #777;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+    }
+
+    .progress-item { margin-bottom: 16px; }
+
+    .progress-header {
+      display: flex;
+      justify-content: space-between;
+      font-family: 'Determination', monospace;
+      font-size: 0.85em;
+      color: #ddd;
+      margin-bottom: 5px;
+      letter-spacing: 1px;
+    }
+
+    .progress-bar-bg {
+      width: 100%;
+      height: 10px;
+      background-color: rgba(255,255,255,0.1);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background-color: #00ff0d;
+      border-radius: 3px;
+      transition: width 0.8s ease;
+    }
+
+    .progress-note {
+      font-family: 'Determination', monospace;
+      font-size: 0.72em;
+      color: #888;
+      font-style: italic;
+      margin-top: 4px;
+      letter-spacing: 0.5px;
+    }
+
+    .progress-updated {
+      font-family: 'Determination', monospace;
+      font-size: 0.72em;
+      color: #555;
+      margin-top: 12px;
+      text-align: right;
+      letter-spacing: 0.5px;
+    }
+
+    /* ── DESCARGAS ── */
+    #page-descargas {
+      padding: 50px 40px 100px;
+      min-height: calc(100vh - 80px - 61px);
+    }
+
+    .page-title {
+      font-family: 'Determination', monospace;
+      font-size: 1.8em;
+      letter-spacing: 4px;
+      color: #fff;
+      text-shadow: 0 0 18px rgba(255,255,255,0.55), 0 0 40px rgba(255,255,255,0.18);
+      text-transform: uppercase;
+      margin-bottom: 36px;
+      text-align: center;
+      border-bottom: 1px solid rgba(255,255,255,0.15);
+      padding-bottom: 16px;
+      width: 100%;
+      max-width: 800px;
+    }
+
+    .catalog {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 28px;
+      width: 100%;
+    }
+
+    .chapter-card {
+      background-color: rgba(10, 10, 15, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 6px;
+      width: 260px;
+      padding: 24px;
+      text-align: center;
+      color: white;
+      transition: border-color 0.25s ease, transform 0.2s ease;
+    }
+
+    .chapter-card:hover {
+      border-color: rgba(255,255,255,0.4);
+      transform: translateY(-3px);
+    }
+
+    .chapter-card img {
+      width: 100%;
+      border-radius: 4px;
+      image-rendering: pixelated;
+    }
+
+    .chapter-card h3 {
+      font-family: 'Determination', monospace;
+      font-size: 0.95em;
+      margin: 14px 0 6px;
+      color: #e0e0e0;
+      letter-spacing: 1px;
+    }
+
+    .chapter-card p {
+      font-size: 0.82em;
+      color: #777;
+      margin: 0 0 14px;
+    }
+
+    .download-button {
+      display: inline-block;
+      margin-top: 6px;
+      padding: 8px 20px;
+      background-color: transparent;
+      color: #ffffff;
+      font-family: 'Determination', monospace;
+      font-size: 0.82em;
+      font-weight: bold;
+      text-decoration: none;
+      border: 1px solid #ffffff;
+      border-radius: 4px;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .download-button:hover {
+      background-color: #ffffff;
+      color: #000;
+    }
+
+    .download-button.ready {
+      background-color: #ffe14d;
+      color: #000;
+      border-color: #ffe14d;
+    }
+
+    .download-button.ready:hover {
+      background-color: #fff2a3;
+      border-color: #fff2a3;
+    }
+
+    /* ── EQUIPO ── */
+    #page-equipo {
+      padding: 50px 20px 100px;
+      min-height: calc(100vh - 80px - 61px);
+      gap: 32px;
+    }
+
+    #page-contacto {
+      padding: 50px 20px 100px;
+      min-height: calc(100vh - 80px - 61px);
+      justify-content: flex-start;
+    }
+
+    .content-card {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      width: 100%;
+      padding: 40px 48px;
+      background-color: rgba(8, 8, 12, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 6px;
+      color: #d0d0d0;
+      font-family: 'Determination', sans-serif;
+      line-height: 1.75;
+    }
+
+    .content-card h1 {
+      font-size: 1.9em;
+      margin-bottom: 22px;
+      text-align: center;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      padding-bottom: 16px;
+      background: linear-gradient(180deg, #ffffff 0%, #a0a0b0 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 0 10px rgba(255,255,255,0.45)) drop-shadow(0 0 28px rgba(255,255,255,0.15));
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .content-card h3 {
+      font-size: 0.85em;
+      margin: 22px 0 4px;
+      color: #aaaaaa;
+      text-align: center;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .content-card h3 + p {
+      text-align: center;
+      color: #aaa;
+      margin-top: 0;
+    }
+
+    .content-card a {
+      color: #ffffff;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255,255,255,0.3);
+      transition: border-color 0.2s;
+    }
+
+    .content-card a:hover { border-bottom-color: #ffffff; }
+
+    /* ── Footer ── */
+    .bottom-navbar {
+      opacity: 0;
+      transition: opacity 0.8s ease;
+      background-color: #000000;
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      padding: 15px 0;
+      box-shadow: 0 -1px 0 rgba(255,255,255,0.08);
+      z-index: 200;
+      width: 100%;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+    }
+
+    .bottom-navbar a img {
+      height: 38px;
+      filter: brightness(0) invert(1);
+      transition: transform 0.2s ease, filter 0.2s ease;
+      cursor: pointer;
+      display: block;
+    }
+
+    .bottom-navbar a:hover img {
+      transform: scale(1.2);
+      filter: brightness(0) invert(1) drop-shadow(0 0 5px rgba(255,255,255,0.6));
+    }
+
+    /* Transición entre páginas */
+    .page {
+      display: none;
+      flex: 1;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+      opacity: 0;
+      transform: translateX(30px);
+      transition: all 0.5s ease;
+    }
+
+    .page.active {
+      display: flex;
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .page.leaving {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+  </style>
+</head>
+<body class="bloquear-scroll">
+
+  <!-- Splash screen -->
+  <div id="splash">
+    <img src="img/logo-ch5.png" alt="Letra Delta" class="splash-logo">
+    <p class="splash-bienvenida">
+      Gracias por optar por nuestro parche de localización.<br>
+      Cada línea fue escrita con cariño para que usted disfrute<br>
+      Deltarune en español a la visión de Toby Fox.
+    </p>
+    <p class="splash-continuar">— Haga click o presione cualquier tecla para ingresar. —</p>
+  </div>
+
+  <nav class="navbar desactivado" id="main-navbar">
+    <a href="#" class="logo-button desactivado" onclick="showPage('inicio')" title="Inicio">
+      <img src="favicon.png" alt="Letra Delta">
+    </a>
+    <div class="nav-left">
+      <button class="nav-button active desactivado" id="btn-inicio"    onclick="showPage('inicio')">INICIO</button>
+      <button class="nav-button desactivado" id="btn-descargas" style="display:none;" aria-hidden="true" tabindex="-1">DESCARGAS</button>
+      <button class="nav-button desactivado"        id="btn-equipo"    onclick="showPage('equipo')">EQUIPO</button>
+      <button class="nav-button desactivado"        id="btn-contacto"  onclick="showPage('contacto')"><span class="nav-label-full">FAQ / CONTACTO</span><span class="nav-label-short">FAQ</span></button>
+    </div>
+  </nav>
+
+  <!-- INICIO -->
+  <section class="page active" id="page-inicio">
+    <div class="logo-video-wrap">
+      <video playsinline id="logo-video" class="logo-video"></video>
+      <img src="img/logo-ch5.png" alt="Deltarune" class="logo-png" id="logo-png">
+    </div>
+
+    <div class="intro-content">
+      <p class="subtitle">TRADUCIENDO CAPÍTULO 5.</p>
+
+      <div class="countdown-card" id="countdown-card">
+        <p class="countdown-title">▲ El parche sale en</p>
+        <div class="countdown-timer">
+          <div class="countdown-unit">
+            <span class="countdown-number" id="cd-hours">00</span>
+            <span class="countdown-label">Horas</span>
+          </div>
+          <div class="countdown-unit">
+            <span class="countdown-number" id="cd-mins">00</span>
+            <span class="countdown-label">Min</span>
+          </div>
+          <div class="countdown-unit">
+            <span class="countdown-number" id="cd-secs">00</span>
+            <span class="countdown-label">Seg</span>
+          </div>
+        </div>
+        <p class="countdown-note" id="countdown-note">Sábado, hora estimada.</p>
+      </div>
+
+      <p class="section-label">Trailer</p>
+      <div class="video-wrapper">
+        <div class="video-border">
+          <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/EAr7sjWcOWA"
+                    title="Trailer Letra Delta"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+
+      <div class="progress-card">
+        <p class="progress-title">▲ Estado del proyecto</p>
+        <p class="progress-subtitle">Progreso actual de la traducción</p>
+
+        <div class="progress-item">
+          <div class="progress-header"><span>Capítulo 1</span><span>100%</span></div>
+          <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:100%"></div></div>
+          <p class="progress-note">Revisión completa.</p>
+        </div>
+        
+        <div class="progress-item">
+          <div class="progress-header"><span>Capítulo 2</span><span>100%</span></div>
+          <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:100%"></div></div>
+          <p class="progress-note">Revisión completa.</p>
+        </div>
+        
+        <div class="progress-item">
+          <div class="progress-header"><span>Capítulo 3</span><span>100%</span></div>
+          <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:100%"></div></div>
+          <p class="progress-note">Revisión completa.</p>
+        </div>
+        
+        <div class="progress-item">
+          <div class="progress-header"><span>Capítulo 4</span><span>100%</span></div>
+          <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:100%"></div></div>
+          <p class="progress-note">Revisión completa.</p>
+        </div>
+        
+        <div class="progress-item">
+          <div class="progress-header"><span>Capítulo 5</span><span>100%</span></div>
+          <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:100%"></div></div>
+          <p class="progress-note">Revisión completa.</p>
+        </div>
+
+        <p class="progress-updated">Última actualización: 11 de julio.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DESCARGAS -->
+  <section class="page" id="page-descargas">
+    <p class="page-title">Descargas</p>
+    <div class="catalog">
+      <div class="chapter-card">
+        <img src="img/screenshot.png" alt="Capítulos 1 al 4">
+        <h3>Capítulos 1, 2, 3 y 4</h3>
+        <p id="chapter5-note">Próximamente capítulo 5.</p>
+        <a href="#" id="chapter5-download" class="download-button" title="Disponible próximamente">Próximamente</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- EQUIPO -->
+  <section class="page" id="page-equipo">
+    <div class="content-card">
+      <h1>Sobre Nosotros</h1>
+      <p>Somos un grupo de fans apasionados que decidimos traducir <strong>Deltarune</strong> al <strong>español americano</strong>.</p>
+      <p>Nuestra motivación es simple: queremos que los hispanohablantes que no tengan mucho conocimiento del inglés puedan disfrutar de este juego al máximo, sin perderse ningún detalle de la historia, los personajes y el humor que lo hacen tan especial.</p>
+      <p>La traducción se distribuye como complemento del mod <strong>Deltranslate</strong> de Neprim, y se rige por un registro claro, coherente y respetuoso con el tono y los matices del texto original.</p>
+    </div>
+
+    <div class="content-card">
+      <h1>Equipo del Proyecto</h1>
+
+      <h3>Coordinación</h3>
+      <p>Broxi</p>
+
+      <h3>Traducción</h3>
+      <p>Broxi · Sketchy · NoSoyKío · LinuxPa · ItsLadyBee · sweetsparklez · SHUL_13 · LittleLute</p>
+
+      <h3>Revisión</h3>
+      <p>napolytus · Staipor · Mapple_Yellow · JoaTank · alcachofa47 · Angeldx567 · Minina 7431 · Ant</p>
+
+      <h3>Arte</h3>
+      <p>Sketchy · NoSoyKío · Minina 7431 · Mako · Lein Moriguo · Broxi</p>
+
+      <h3>Doblaje</h3>
+      <p>Mako (Flowery)</p>
+
+      <h3>Programación</h3>
+      <p>LinuxPa · Broxi · Perabajadev</p>
+
+      <h3>Edición de Trailer y vídeo dentro del juego</h3>
+      <p>LinuxPa</p>
+
+      <h3>Producción de audio</h3>
+      <p>LittleLute</p>
+
+      <h3>Bordes dinámicos</h3>
+      <p>IRUZZ o NXRUNE</p>
+
+      <p style="margin-top:24px; color:#888; font-size:0.9em; text-align:center;">
+        Agradecemos a todos los que contribuyeron al proyecto. Con dedicación, el equipo de <strong style="color:#d0d0d0">Letra Delta</strong>.
+      </p>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section class="page" id="page-contacto">
+    <div class="content-card">
+      <h1>FAQ / Contacto</h1>
+      <p>Tenemos un server de <strong><a href="https://discord.gg/MTjWtnCJkx" target="_blank">Discord</a></strong> donde podés hablar con la comunidad y con los participantes del proyecto, y enterarte de los avances antes que nadie.</p>
+      <p>También estamos en <strong><a href="https://x.com/LetraDelta" target="_blank">Twitter / X</a></strong> como <strong>@LetraDelta</strong>, donde publicamos noticias y avances del proyecto.</p>
+      <p>Y en <strong><a href="https://www.tiktok.com/@linucali" target="_blank">TikTok</a></strong> subimos contenido relacionado con el proyecto y otros temas de interés.</p>
+    </div>
+  </section>
+
+  <!-- Footer fijo -->
+  <footer class="bottom-navbar">
+    <a href="https://twitter.com/LetraDelta" target="_blank" title="Twitter"><img src="img/twitter.png" alt="Twitter"></a>
+    <a href="https://discord.gg/MTjWtnCJkx" target="_blank" title="Discord"><img src="img/discord.png" alt="Discord"></a>
+    <a href="https://www.tiktok.com/@linucali" title="TikTok"><img src="img/tiktok.png" alt="TikTok"></a>
+    <a href="https://www.youtube.com/@linuxPa" title="YouTube"><img src="img/youtube.png" alt="YouTube"></a>
+  </footer>
+
+  <audio id="hover-sound" src="SFX/snd_menumove.wav" preload="auto"></audio>
+  <audio id="select-sound" src="SFX/snd_select.wav" preload="auto"></audio>
+
+<script>
+    const logoVideo    = document.getElementById('logo-video');
+    const logoPng      = document.getElementById('logo-png');
+    const splash       = document.getElementById('splash');
+    const navbar       = document.getElementById('main-navbar');
+    const introContent = document.querySelector('#page-inicio .intro-content');
+    const bottomNavbar = document.querySelector('.bottom-navbar');
+
+    const hoverSound  = document.getElementById('hover-sound');
+    const selectSound = document.getElementById('select-sound');
+
+    let introStarted = false;
+
+    function activarContenido() {
+        document.body.classList.remove('bloquear-scroll');
+        navbar.classList.remove('desactivado');
+        document.querySelectorAll('.navbar, .nav-button, .logo-button').forEach(el => {
+            el.classList.remove('desactivado');
+        });
+    }
+
+    logoVideo.addEventListener('ended', () => {
+        logoVideo.style.visibility = 'hidden';
+    });
+
+    function startIntro() {
+        if (introStarted) return;
+        introStarted = true;
+
+        splash.style.transition = 'opacity 0.7s ease';
+        splash.style.opacity = '0';
+        setTimeout(() => splash.remove(), 700);
+
+        cargarVideo(() => logoVideo.play().catch(() => {}));
+
+        let contenidoMostrado = false;
+
+        logoVideo.addEventListener('timeupdate', () => {
+            if (!contenidoMostrado && logoVideo.currentTime >= 5) {
+                contenidoMostrado = true;
+
+                logoPng.style.opacity = '1';
+                navbar.classList.add('visible');
+                if (bottomNavbar) bottomNavbar.style.opacity = '1';
+                if (introContent) introContent.classList.add('visible');
+
+                document.body.classList.add('flores-animar');
+                setTimeout(() => document.body.classList.add('flores-ready'), 100);
+                
+                activarContenido();
+            }
+        });
+
+        setTimeout(() => {
+            if (!contenidoMostrado) {
+                contenidoMostrado = true;
+                logoPng.style.opacity = '1';
+                navbar.classList.add('visible');
+                if (bottomNavbar) bottomNavbar.style.opacity = '1';
+                if (introContent) introContent.classList.add('visible');
+                document.body.classList.add('flores-animar');
+                setTimeout(() => document.body.classList.add('flores-ready'), 100);
+                
+                activarContenido();
+            }
+        }, 5800);
+    }
+
+    function showPage(id) {
+        const currentPage = document.querySelector('.page.active');
+        const newPage = document.getElementById('page-' + id);
+
+        if (!newPage || currentPage === newPage) return;
+
+        if (currentPage) {
+            currentPage.classList.add('leaving');
+            setTimeout(() => {
+                currentPage.classList.remove('active', 'leaving');
+                newPage.classList.add('active');
+                
+                document.querySelectorAll('.nav-button').forEach(b => b.classList.remove('active'));
+                const activeBtn = document.getElementById('btn-' + id);
+                if (activeBtn) activeBtn.classList.add('active');
+
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }, 400);
+        } else {
+            newPage.classList.add('active');
+            document.querySelectorAll('.nav-button').forEach(b => b.classList.remove('active'));
+            const activeBtn = document.getElementById('btn-' + id);
+            if (activeBtn) activeBtn.classList.add('active');
+        }
+    }
+
+    function cargarVideo(callback) {
+        fetch('img/logo-ch5.mp4')
+            .then(r => r.blob())
+            .then(blob => {
+                logoVideo.src = URL.createObjectURL(blob);
+                logoVideo.load();
+                callback();
+            })
+            .catch(() => {
+                logoVideo.src = 'img/logo-ch5.mp4';
+                logoVideo.load();
+                callback();
+            });
+    }
+
+    function playHover() {
+        if (hoverSound) { hoverSound.currentTime = 0; hoverSound.play().catch(() => {}); }
+    }
+
+    function playSelect(e) {
+        if (e.currentTarget.classList.contains('desactivado')) return;
+        if (selectSound) { selectSound.currentTime = 0; selectSound.play().catch(() => {}); }
+    }
+
+    function initSounds() {
+        const elements = document.querySelectorAll('.nav-button, .logo-button, .download-button, .chapter-card, .bottom-navbar a');
+        elements.forEach(el => {
+            el.addEventListener('mouseenter', (e) => {
+                if (!el.classList.contains('desactivado')) playHover();
+            });
+            el.addEventListener('click', playSelect);
+        });
+    }
+
+    splash.addEventListener('click', startIntro, { once: true });
+    document.addEventListener('keydown', startIntro, { once: true });
+
+    window.addEventListener('load', () => {
+        initSounds();
+        showPage('inicio');
+    });
+
+    // ── Contador hasta el lanzamiento del parche ──
+    (function () {
+        // Sábado 11 de julio de 2026, 19:00 (UTC-4). Ajustar si la hora/zona cambia.
+        const targetDate = new Date('2026-07-11T03:11:30-04:00').getTime();
+
+        // ⚠️ REEMPLAZAR por el link real de descarga cuando lo tengas (una sola vez, se usa en los dos lugares).
+        const DOWNLOAD_LINK = '';
+
+        const card    = document.getElementById('countdown-card');
+        const elHours = document.getElementById('cd-hours');
+        const elMins  = document.getElementById('cd-mins');
+        const elSecs  = document.getElementById('cd-secs');
+
+        // Detecta si la página ya se cargó DESPUÉS de la fecha (o sea, ya se "refrescó").
+        const yaEstabaDisponibleAlCargar = Date.now() >= targetDate;
+
+        // Botón de descarga de la sección "Descargas".
+        function activarBotonDescargas() {
+            const boton = document.getElementById('chapter5-download');
+            const nota  = document.getElementById('chapter5-note');
+            if (boton) {
+                boton.href = DOWNLOAD_LINK;
+                boton.textContent = 'Descargar';
+                boton.title = 'Descargar capítulo 5';
+                boton.classList.add('ready');
+            }
+            if (nota) {
+                nota.textContent = '¡Ya disponible! Capítulo 5 traducido.';
+            }
+        }
+
+        // Estado final: la fecha ya pasó y la página se recargó → mostrar la tarjeta completa.
+        function mostrarListo() {
+            if (card) {
+                card.innerHTML =
+                    '<img src="img/screenshot.png" alt="Capítulos 1 al 4" ' +
+                        'style="max-width:200px;width:100%;border-radius:4px;image-rendering:pixelated;margin:0 auto 14px;display:block;">' +
+                    '<h3 style="font-family:\'Determination\',monospace;font-size:0.95em;color:#e0e0e0;letter-spacing:1px;margin:0 0 8px;">Capítulos 1, 2, 3 y 4</h3>' +
+                    '<p style="font-size:0.82em;color:#aaa;margin:0 0 14px;">¡Ya disponible! Capítulo 5 traducido.</p>' +
+                    '<a href="' + DOWNLOAD_LINK + '" class="download-button ready">Descargar</a>';
+            }
+        }
+
+        // Estado de transición: el contador llegó a 0 mientras la persona seguía en la página abierta.
+        function mostrarRefrescar() {
+            if (card) {
+                card.innerHTML = '<p class="countdown-refresh">¡Refresque la página!</p>';
+            }
+            activarBotonDescargas();
+        }
+
+        if (yaEstabaDisponibleAlCargar) {
+            mostrarListo();
+            return;
+        }
+
+        if (!card || !elHours || !elMins || !elSecs) return;
+
+        function pad(n) { return String(n).padStart(2, '0'); }
+
+        let countdownInterval;
+
+        function updateCountdown() {
+            const diff = targetDate - Date.now();
+
+            if (diff <= 0) {
+                clearInterval(countdownInterval);
+                mostrarRefrescar();
+                return;
+            }
+
+            const hours = Math.floor(diff / 3600000);
+            const mins  = Math.floor((diff % 3600000) / 60000);
+            const secs  = Math.floor((diff % 60000) / 1000);
+
+            elHours.textContent = pad(hours);
+            elMins.textContent  = pad(mins);
+            elSecs.textContent  = pad(secs);
+        }
+
+        updateCountdown();
+        countdownInterval = setInterval(updateCountdown, 1000);
+    })();
+</script>
+</body>
+</html>
