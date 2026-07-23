@@ -1,0 +1,55 @@
+[
+  {
+    "id": "vacio_1",
+    "lineas": [
+      { "texto": "* ..." },
+      { "texto": "* No hay nada por aquí." },
+      { "texto": "* Espera. ¿Escuchaste eso?" },
+      { "texto": "* Era solo el viento entre las flores." },
+      { "texto": "* (En serio, no hay nada aquí. Puedes volver arriba).", "color": "gray" }
+    ]
+  },
+  {
+    "id": "vacio_2",
+    "lineas": [
+      { "texto": "* Sientes una presencia extraña." },
+      { "texto": "* [color=red]PELIGRO.[/color]" },
+      { "texto": "* ...es broma. Relájate.", "color": "yellow" }
+    ]
+  },
+  {
+    "id": "vacio_3",
+    "lineas": [
+      { "texto": "* No sabíamos qué poner aquí." },
+      { "texto": "* Así que pusimos esto." },
+      { "texto": "* [color=green]* +0 EXP[/color]  [color=cyan]* +0 D$[/color]" },
+      { "texto": "* Come algo. Bebe agua.", "color": "yellow" }
+    ]
+  },
+  {
+    "id": "vacio_4",
+    "lineas": [
+      { "texto": "* Este espacio parece hecho para un secreto." },
+      { "texto": "* Pero no encontraste ninguno." },
+      { "texto": "* ¡Demonios! ¿Qué es eso?" },
+      { "texto": "* ...oh, solo era tu reflejo en la pantalla.", "color": "gray" }
+    ]
+  },
+  {
+    "id": "vacio_5",
+    "lineas": [
+      { "texto": "* Las 7 flores susurran algo." },
+      { "texto": "* [color=cyan]\"Gracias por soñar junto a mí.\"[/color]" },
+      { "texto": "* ...tal vez haya sido el viento.", "color": "gray" }
+    ]
+  },
+  {
+    "id": "vacio_6",
+    "lineas": [
+      { "texto": "* Encontraste algo." },
+      { "texto": "* Parece ser una representación de FLOWERY." },
+      { "texto": "* ...vaya, pero qué criatura tan predecible." },
+      { "texto": "* Ralsei usa FIRESHOCK. Eso fue inesperado.", "color": "gray" }
+    ]
+  }
+]

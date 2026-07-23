@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://letradelta.github.io/Spanish/sitemap.xml

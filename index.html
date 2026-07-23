@@ -3,815 +3,649 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Letra Delta - Deltarune al Español</title>
+  <title>Deltarune en Español | Letra Delta — Parche de Localización</title>
+  <meta name="description" content="Deltarune en español: parche de localización al español neutro para los Capítulos 1 al 5, hecho por el equipo Letra Delta. Descarga gratuita.">
+  <meta name="keywords" content="Deltarune en español, Deltarune español latino, español neutro, parche deltarune español, deltarune capitulo 3 español, deltarune capitulo 4 español, deltarune capitulo 5 español, Letra Delta, traduccion deltarune, deltranslate, descargar parche deltarune">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Equipo Letra Delta">
+  <link rel="canonical" href="https://letradelta.github.io/Spanish/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_LA">
+  <meta property="og:site_name" content="Letra Delta">
+  <meta property="og:title" content="Deltarune en Español | Letra Delta">
+  <meta property="og:description" content="Traducción y localización completa al español neutro para los capítulos de Deltarune. ¡Descarga el parche gratis!">
+  <meta property="og:image" content="https://letradelta.github.io/Spanish/img/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:url" content="https://letradelta.github.io/Spanish/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@LetraDelta">
+  <meta name="twitter:creator" content="@LetraDelta">
+  <meta name="twitter:title" content="Deltarune en Español | Letra Delta">
+  <meta name="twitter:description" content="Parche de localización al español neutro para los capítulos de Deltarune. Creado por fans para la comunidad hispanohablante.">
+  <meta name="twitter:image" content="https://letradelta.github.io/Spanish/img/og-image.png">
+  <meta name="theme-color" content="#050507">
   <link rel="icon" href="favicon.png" type="image/png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Letra Delta - Parche de Localización de Deltarune al Español",
+    "url": "https://letradelta.github.io/Spanish/",
+    "downloadUrl": "https://github.com/BroxiCoros/InstaladorLetraDelta/releases/download/v1.1.0/InstaladorLetraDelta.exe",
+    "operatingSystem": "Windows, macOS",
+    "applicationCategory": "GameApplication",
+    "genre": "RPG / Indie / Mod",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "description": "Parche de traducción y localización al español neutro/americano para los capítulos de Deltarune (compatibilidad con Deltranslate).",
+    "author": {
+      "@type": "Organization",
+      "name": "Letra Delta",
+      "sameAs": [ "https://x.com/LetraDelta", "https://discord.com/invite/39Mu5DFEx7" ]
+    }
+  }
+  </script>
+
   <style>
+    /* ══════════════════════════════════════════════════════════════
+       LETRA DELTA · SISTEMA DE DISEÑO
+       Estética Deltarune: el vacío negro, la fuente Determination,
+       el azul del Dark World y el ALMA roja como único acento.
+       ══════════════════════════════════════════════════════════════ */
+
     @font-face {
       font-family: 'Determination';
       src: url('fonts/DeterminationMonoWebRegular-Z5oq.ttf') format('truetype');
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'DeterminationSans';
+      src: url('fonts/DeterminationSansWebRegular-369X.ttf') format('truetype');
+      font-display: swap;
+    }
+
+    :root {
+      /* Color */
+      --void:      #050507;
+      --void-2:    #08090f;
+      --panel:     #0b0d16;
+      --panel-hi:  #10131f;
+      --line:      rgba(255,255,255,0.10);
+      --line-hi:   rgba(255,255,255,0.28);
+      --delta:     #3a6eff;   /* Azul Dark World */
+      --delta-hi:  #86a5ff;
+      --soul:      #ff2d55;   /* El ALMA */
+      --gold:      #ffd94a;   /* Amarillo de menú Undertale */
+      --bone:      #ececf2;
+      --bone-dim:  #cbcedb;
+      --muted:     #a3a8bd;
+      --muted-dim: #868ba1;
+
+      /* Selector del ALMA (corazón rojo) */
+      --heart: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24'%3E%3Cpath fill='%23ff2d55' d='M12 21s-8-5.3-8-10.5A4.5 4.5 0 0 1 12 7a4.5 4.5 0 0 1 8 3.5C20 15.7 12 21 12 21z'/%3E%3C/svg%3E");
+
+      --nav-h: 74px;
+      --foot-h: 62px;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    html { scroll-behavior: smooth; }
+
     body {
-      font-family: sans-serif;
-      color: white;
+      font-family: 'DeterminationSans', sans-serif;
+      color: var(--bone);
       min-height: 100vh;
-      background-color: #000;
+      background-color: var(--void);
+      background-image:
+        radial-gradient(1200px 620px at 50% -8%, rgba(58,110,255,0.10), transparent 60%),
+        radial-gradient(900px 500px at 50% 108%, rgba(58,110,255,0.05), transparent 60%);
       display: flex;
       flex-direction: column;
       overflow-x: hidden;
-      padding-bottom: 61px;
+      padding-bottom: var(--foot-h);
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* Clase para bloquear el scroll en la intro */
-    body.bloquear-scroll {
-      overflow: hidden !important;
-    }
+    body.bloquear-scroll { overflow: hidden !important; }
 
-    /* Clase para desactivar clicks en los botones antes de tiempo */
-    .desactivado {
-      pointer-events: none !important;
-      opacity: 0.5;
-    }
+    .desactivado { pointer-events: none !important; opacity: 0.4; }
 
-    /* ── INTRO SECUENCIAL ── */
+    ::selection { background: var(--delta); color: #fff; }
 
-    /* ── Pantalla de inicio (click to continue) ── */
-    #splash {
-      position: fixed;
-      inset: 0;
-      background: #000;
-      z-index: 999;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      gap: 20px;
-    }
+    a { color: var(--delta-hi); }
 
-    .splash-logo {
-      width: min(480px, 80vw);
-      image-rendering: pixelated;
-      opacity: 0.95;
-      filter: drop-shadow(0 0 24px rgba(255,255,255,0.18));
-    }
-
-    .splash-bienvenida {
-      font-family: 'Determination', monospace;
-      font-size: 0.88em;
-      color: #cccccc;
-      letter-spacing: 1.5px;
-      line-height: 2;
-      text-align: center;
-      max-width: 560px;
-    }
-
-    .splash-continuar {
-      font-family: 'Determination', monospace;
-      font-size: 0.82em;
-      color: #ffffff;
-      letter-spacing: 2px;
-      text-align: center;
-      animation: parpadeo 1.4s ease-in-out infinite;
-      margin-top: 8px;
-    }
-
-    @keyframes parpadeo {
-      0%, 100% { opacity: 1; }
-      50%       { opacity: 0.2; }
-    }
-
-    #splash.ocultar {
-      animation: splash-out 0.6s ease forwards;
-    }
-
-    @keyframes splash-out {
-      to { opacity: 0; pointer-events: none; }
-    }
-
-    /* Navbar: invisible por defecto, transición al quitar .oculta */
-    .navbar {
-      opacity: 0;
-      transition: opacity 0.6s ease;
-    }
-    .navbar.visible {
-      opacity: 1;
-    }
-
-    /* Flores: invisibles por defecto, JS agrega .visible para disparar animación */
-    body::before,
-    body::after {
-      opacity: 0;
-    }
-    body.flores-animar::before {
-      animation: flores-izq 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-    body.flores-animar::after {
-      animation: flores-der 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-    body.flores-ready::before {
-      opacity: 1;
-    }
-    body.flores-ready::after {
-      opacity: 1;
-    }
-
-    /* Intro-content: invisible, aparece con clase tras el video */
-    #page-inicio .intro-content {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    #page-inicio .intro-content.visible {
-      opacity: 1 !important;
-      transform: translateY(0) !important;
-    }
-
-    /* ── ANIMACIONES FLORES ARREGLADAS ── */
-    @keyframes flores-izq {
-      from { transform: translateX(-120px); opacity: 0; }
-      to   { transform: translateX(0);      opacity: 1; }
-    }
-    @keyframes flores-der {
-      from { transform: translateX(120px) scaleX(-1); opacity: 0; }
-      to   { transform: translateX(0)     scaleX(-1); opacity: 1; }
-    }
-
-    body::before,
-    body::after {
+    /* ── Flores del capítulo 5 que enmarcan el vacío ── */
+    body::before, body::after {
       content: "";
-      position: fixed;
-      top: 80px;
-      width: 620px;
-      height: calc(100vh - 80px);
+      position: absolute;
+      top: 92px;
+      width: 600px;
+      aspect-ratio: 334 / 984;
+      height: auto;
       background: url("img/ch5-flowers.png") no-repeat top center;
-      background-size: 620px auto;
+      background-size: 600px auto;
       pointer-events: none;
       z-index: 0;
-      filter: brightness(1.15) saturate(1.1);
+      opacity: 0;
+      filter: brightness(1.1) saturate(1.05) drop-shadow(0 0 30px rgba(58,110,255,0.16));
       image-rendering: pixelated;
-      image-rendering: -moz-crisp-edges;
       image-rendering: crisp-edges;
     }
+    body::before { left: -180px; }
+    body::after  { right: -180px; }
 
-    body::before { left: -170px; }
-    body::after { right: -170px; }
+    body.flores-ready::before,
+    body.flores-ready::after { opacity: 0.92; }
+    body.flores-animar::before { animation: flores-izq 1.5s cubic-bezier(0.16,1,0.3,1) forwards; }
+    body.flores-animar::after  { animation: flores-der 1.5s cubic-bezier(0.16,1,0.3,1) forwards; }
+    body.flores-ready::before { transform: translateY(var(--flores-y, 0px)); }
+    body.flores-ready::after  { transform: translateY(var(--flores-y, 0px)) scaleX(-1); }
 
-    /* En pantallas chicas, las flores se achican proporcionalmente
-       para que no se amontonen/superpongan en el centro */
-    @media (max-width: 700px) {
-      body::before,
-      body::after {
-        width: 42vw;
-        background-size: 42vw auto;
-        top: 80px;
-        height: calc(100vh - 80px);
-      }
-      body::before { left: -14vw; }
-      body::after { right: -14vw; }
+    @keyframes flores-izq {
+      from { transform: translateX(-130px); opacity: 0; }
+      to   { transform: translateX(0);      opacity: 0.92; }
+    }
+    @keyframes flores-der {
+      from { transform: translateX(130px) scaleX(-1); opacity: 0; }
+      to   { transform: translateX(0)     scaleX(-1); opacity: 0.92; }
     }
 
-    /* La navbar achica su altura a 64px en móvil chico: las flores
-       deben empezar justo debajo, no taparse detrás de ella */
-    @media (max-width: 480px) {
-      body::before,
-      body::after {
-        top: 64px;
-        height: calc(100vh - 64px);
-      }
+    @media (max-width: 900px) {
+      body::before, body::after { width: 40vw; background-size: 40vw auto; top: 82px; }
+      body::before { left: -13vw; }
+      body::after  { right: -13vw; }
+    }
+    @media (max-width: 620px) {
+      body::before, body::after { opacity: 0 !important; display: none; }
     }
 
-    /* Parallax post-animación (Mantiene el scaleX invertido en la derecha) */
-    body.flores-ready::before {
-      transform: translateY(var(--flores-y, 0px));
+    /* ════════════════ SPLASH ════════════════ */
+    #splash {
+      position: fixed; inset: 0;
+      background:
+        radial-gradient(700px 500px at 50% 42%, rgba(58,110,255,0.12), transparent 70%),
+        var(--void);
+      z-index: 999;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      cursor: pointer; gap: 26px; padding: 24px;
     }
-    body.flores-ready::after {
-      transform: translateY(var(--flores-y, 0px)) scaleX(-1);
+    .splash-logo {
+      width: min(440px, 78vw);
+      image-rendering: pixelated;
+      filter: drop-shadow(0 0 30px rgba(58,110,255,0.30));
+      animation: float 5s ease-in-out infinite;
     }
+    @keyframes float { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-8px);} }
+    .splash-bienvenida {
+      font-family: 'DeterminationSans', monospace;
+      font-size: 0.98rem; color: var(--bone-dim);
+      letter-spacing: 0.5px; line-height: 2.1; text-align: center; max-width: 540px;
+    }
+    .splash-continuar {
+      font-family: 'Determination', monospace;
+      font-size: 0.82rem; color: var(--gold);
+      letter-spacing: 2px; text-align: center;
+      animation: parpadeo 1.4s ease-in-out infinite; margin-top: 4px;
+    }
+    @keyframes parpadeo { 0%,100%{opacity:1;} 50%{opacity:0.25;} }
 
-    /* ── Navbar Superior ── */
+    /* ════════════════ NAVBAR ════════════════ */
     .navbar {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-color: #000000;
-      padding: 0 20px;
-      height: 80px;
-      width: 100%;
-      z-index: 100;
-      position: relative;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(5,5,7,0.82);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+      padding: 0 20px; height: var(--nav-h); width: 100%;
+      z-index: 100; position: sticky; top: 0;
+      opacity: 0; pointer-events: none; transition: opacity 0.6s ease;
     }
+    .navbar.visible { opacity: 1; pointer-events: auto; }
 
     .logo-button {
-      position: absolute;
-      left: 12px;
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 101;
-      text-decoration: none;
+      position: absolute; left: 18px; top: 50%;
+      transform: translateY(-50%); z-index: 101; text-decoration: none;
     }
-
     .logo-button img {
-      height: 60px;
-      image-rendering: pixelated;
-      cursor: pointer;
-      transition: transform 0.2s ease;
-      display: block;
+      height: 46px; image-rendering: pixelated; cursor: pointer;
+      transition: transform 0.2s ease, filter 0.2s ease; display: block;
     }
+    .logo-button img:hover { transform: scale(1.08); filter: drop-shadow(0 0 8px rgba(58,110,255,0.5)); }
 
-    .logo-button img:hover { transform: scale(1.07); }
-
-    .nav-left {
-      display: flex;
-      gap: 28px;
-      align-items: center;
-    }
+    .nav-left { display: flex; gap: 8px; align-items: center; }
 
     .nav-button {
-      background: none;
-      border: none;
-      color: white;
-      font-family: 'Determination', monospace;
-      font-weight: bold;
-      font-size: 1.15em;
-      letter-spacing: 1px;
-      cursor: pointer;
-      padding: 6px 2px;
-      border-bottom: 2px solid transparent;
-      transition: color 0.2s, border-color 0.2s;
+      position: relative;
+      background: none; border: none; color: var(--muted);
+      font-family: 'Determination', monospace; font-size: 0.98rem;
+      letter-spacing: 1.5px; cursor: pointer;
+      padding: 8px 14px 8px 26px; border-radius: 4px;
+      transition: color 0.18s ease, background 0.18s ease;
     }
-
-    .nav-button:hover,
-    .nav-button.active {
-      color: #ffffff;
-      border-bottom-color: #ffffff;
+    /* Selector del ALMA */
+    .nav-button::before {
+      content: ""; position: absolute; left: 8px; top: 50%;
+      width: 13px; height: 13px; transform: translateY(-50%) scale(0.4);
+      background: var(--heart) center/contain no-repeat;
+      opacity: 0; transition: opacity 0.15s ease, transform 0.15s ease;
     }
-
-    .nav-button:disabled,
-    .nav-button.nav-disabled {
-      opacity: 0.35;
-      cursor: not-allowed;
-      pointer-events: none;
+    .nav-button:hover, .nav-button.active { color: var(--bone); }
+    .nav-button:hover::before, .nav-button.active::before {
+      opacity: 1; transform: translateY(-50%) scale(1);
     }
+    .nav-button:focus-visible { outline: 2px solid var(--delta); outline-offset: 2px; }
 
     .nav-label-short { display: none; }
 
-    /* ── Navbar responsive (evita que se rompa en móvil) ── */
-    @media (max-width: 480px) {
-      .navbar { padding: 0 10px; height: 64px; justify-content: center; }
+    @media (max-width: 560px) {
+      .navbar { padding: 0 8px; }
       .logo-button { display: none; }
-      .nav-left { gap: 16px; }
-      .nav-button {
-        font-size: 0.85em;
-        letter-spacing: 0.5px;
-        padding: 4px 2px;
-        white-space: nowrap;
-      }
+      .nav-left { gap: 2px; }
+      .nav-button { font-size: 0.8rem; letter-spacing: 0.5px; padding: 8px 8px 8px 22px; }
       .nav-label-full { display: none; }
       .nav-label-short { display: inline; }
     }
 
-    /* Las flores empiezan debajo del navbar (que en móvil mide 64px) */
-    @media (max-width: 480px) {
-      body::before,
-      body::after {
-        top: 64px;
-        height: calc(100vh - 64px);
-      }
-    }
-
-    /* ── Páginas (SPA) ── */
+    /* ════════════════ PÁGINAS (SPA) ════════════════ */
     .page {
-      display: none;
-      flex: 1;
-      flex-direction: column;
-      align-items: center;
-      position: relative;
-      z-index: 1;
+      display: none; flex: 1; flex-direction: column; align-items: center;
+      position: relative; z-index: 1;
+      opacity: 0; transform: translateY(16px);
+      transition: opacity 0.38s ease, transform 0.38s ease;
     }
-    .page.active { display: flex; }
+    .page.active { display: flex; opacity: 1; transform: translateY(0); }
+    .page.leaving { opacity: 0; transform: translateY(-16px); }
 
-    /* ── INICIO ── */
+    .wrap { width: 100%; max-width: 920px; padding-inline: 24px; }
+
+    /* Encabezado de sección reutilizable */
+    .eyebrow {
+      font-family: 'Determination', monospace; font-size: 0.92rem;
+      letter-spacing: 3px; text-transform: uppercase; color: var(--delta-hi);
+      display: flex; align-items: center; gap: 14px; justify-content: center;
+    }
+    .eyebrow::before, .eyebrow::after {
+      content: ""; height: 1px; width: 40px;
+      background: linear-gradient(90deg, transparent, var(--delta-hi));
+    }
+    .eyebrow::after { background: linear-gradient(90deg, var(--delta-hi), transparent); }
+
+    .page-title {
+      font-family: 'Determination', monospace;
+      font-size: clamp(1.5rem, 4vw, 2.1rem); letter-spacing: 3px;
+      color: #fff; text-transform: uppercase; text-align: center;
+      margin: 14px 0 8px;
+      text-shadow: 0 0 22px rgba(58,110,255,0.45);
+      text-wrap: balance;
+    }
+    .page-lead {
+      text-align: center; color: var(--bone-dim); max-width: 600px;
+      margin: 0 auto 40px; line-height: 1.9; font-size: 1.05rem;
+      text-wrap: balance;
+    }
+
+    /* Caja de batalla: el borde de UI de Deltarune, refinado */
+    .box {
+      position: relative;
+      background: linear-gradient(180deg, var(--panel), var(--void-2));
+      border: 2px solid var(--line-hi);
+      border-radius: 4px;
+      padding: 30px;
+    }
+    .box::before, .box::after,
+    .box > .tick-b, .box > .tick-c {
+      content: ""; position: absolute; width: 9px; height: 9px;
+      border: 2px solid var(--delta); pointer-events: none;
+    }
+    .box::before { top: -2px; left: -2px; border-right: 0; border-bottom: 0; }
+    .box::after  { top: -2px; right: -2px; border-left: 0; border-bottom: 0; }
+    .box > .tick-b { bottom: -2px; left: -2px; border-right: 0; border-top: 0; }
+    .box > .tick-c { bottom: -2px; right: -2px; border-left: 0; border-top: 0; }
+
+    /* ════════════════ INICIO ════════════════ */
     #page-inicio {
       justify-content: center;
-      min-height: calc(100vh - 80px - 61px);
-      text-align: center;
-      padding: 40px 20px 40px;
+      min-height: calc(100vh - var(--nav-h) - var(--foot-h));
+      text-align: center; padding: 48px 0 40px;
     }
-
-    /* ── Logo video y wrapper ── */
-    .logo-video-wrap {
-      width: 100%;
-      max-width: 560px;
-      min-width: 240px;
-      position: relative;
+    #page-inicio .intro-content {
+      opacity: 0; transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+      display: flex; flex-direction: column; align-items: center; width: 100%;
     }
+    #page-inicio .intro-content.visible { opacity: 1; transform: translateY(0); }
 
-    .logo-video {
-      width: 100%;
-      height: auto;
-      display: block;
-      image-rendering: pixelated;
-    }
-
+    .logo-video-wrap { width: 100%; max-width: 520px; min-width: 240px; position: relative; }
+    .logo-video { width: 100%; height: auto; display: block; image-rendering: pixelated; }
     .logo-png {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%;
-      height: auto;
-      image-rendering: pixelated;
-      opacity: 0;
-      transition: opacity 1.4s ease;
-      pointer-events: none;
+      position: absolute; top: 0; left: 0; width: 100%; height: auto;
+      image-rendering: pixelated; opacity: 0;
+      transition: opacity 1.2s ease; pointer-events: none;
     }
 
     .subtitle {
       font-family: 'Determination', monospace;
-      font-size: 1.4em;
-      margin-top: 12px;
-      color: #ffffff;
-      letter-spacing: 2px;
+      font-size: clamp(1rem, 3vw, 1.4rem);
+      margin-top: 18px; color: #fff; letter-spacing: 3px; font-weight: normal;
+      text-wrap: balance;
     }
+    .tooltip-term { border-bottom: 1px dotted rgba(255,255,255,0.45); cursor: help; color: var(--delta-hi); }
 
+    .hero-tags {
+      display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-top: 18px;
+    }
+    .tag {
+      font-family: 'Determination', monospace; font-size: 0.78rem; letter-spacing: 1.5px;
+      color: var(--muted); border: 1px solid var(--line);
+      padding: 5px 12px; border-radius: 999px; text-transform: uppercase;
+    }
+    .tag.gold { color: var(--gold); border-color: rgba(255,217,74,0.35); }
+
+    /* Tarjeta principal de descarga (home) */
+    .hero-download {
+      margin-top: 34px; width: 100%; max-width: 480px;
+      display: flex; flex-direction: column; align-items: center; gap: 16px;
+    }
+    .hero-shot {
+      width: 100%; border-radius: 4px; image-rendering: pixelated;
+      border: 1px solid var(--line); display: block;
+    }
+    .hero-download .box { width: 100%; padding: 24px 26px; }
+    .hero-download h3 {
+      font-family: 'Determination', monospace; font-size: 1rem;
+      letter-spacing: 1px; color: #fff; margin-bottom: 6px;
+    }
+    .hero-download p { color: var(--bone-dim); font-size: 0.95rem; line-height: 1.75; margin-bottom: 18px; text-wrap: balance; }
+
+    /* Botón de descarga = elegir opción en batalla */
+    .btn-soul {
+      position: relative;
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      padding: 12px 26px 12px 34px;
+      font-family: 'Determination', monospace; font-size: 0.9rem; letter-spacing: 1.5px;
+      color: #fff; text-decoration: none; text-transform: uppercase;
+      background: linear-gradient(180deg, rgba(58,110,255,0.16), rgba(58,110,255,0.06));
+      border: 2px solid var(--delta); border-radius: 4px;
+      cursor: pointer; transition: all 0.18s ease;
+    }
+    .btn-soul::before {
+      content: ""; position: absolute; left: 14px; top: 50%;
+      width: 13px; height: 13px; transform: translateY(-50%) scale(0.3);
+      background: var(--heart) center/contain no-repeat; opacity: 0;
+      transition: opacity 0.16s ease, transform 0.16s ease;
+    }
+    .btn-soul:hover {
+      background: var(--delta); border-color: var(--delta-hi);
+      box-shadow: 0 0 24px rgba(58,110,255,0.5);
+    }
+    .btn-soul:hover::before { opacity: 1; transform: translateY(-50%) scale(1); }
+    .btn-soul:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+    .btn-soul .meta { font-size: 0.66rem; opacity: 0.7; letter-spacing: 1px; }
+
+    /* Aviso compacto de copia limpia bajo el botón del inicio */
+    .hero-warn {
+      margin-top: 14px; font-size: 0.8rem; line-height: 1.65; color: var(--muted);
+      text-align: center; text-wrap: balance;
+    }
+    .hero-warn strong { color: var(--soul); }
+
+    /* Trailer */
     .section-label {
-      font-family: 'Determination', monospace;
-      font-size: 1em;
-      color: #aaa;
-      margin-top: 28px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
+      font-family: 'Determination', monospace; font-size: 0.78rem; color: var(--muted);
+      margin-top: 52px; letter-spacing: 3px; text-transform: uppercase; font-weight: normal;
     }
-
-    /* ── CONTADOR DEL PARCHE ── */
-    .countdown-card {
-      margin-top: 24px;
-      max-width: 480px;
-      width: 100%;
-      background-color: rgba(8, 8, 12, 0.6);
-      border: 1px solid rgba(58, 110, 255, 0.35);
-      border-radius: 6px;
-      padding: 20px 24px 24px;
-      text-align: center;
-    }
-
-    .countdown-title {
-      font-family: 'Determination', monospace;
-      font-size: 0.95em;
-      color: #fff;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      margin-bottom: 16px;
-    }
-
-    .countdown-timer {
-      display: flex;
-      justify-content: center;
-      gap: 14px;
-    }
-
-    .countdown-unit {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-width: 52px;
-    }
-
-    .countdown-number {
-      font-family: 'Determination', monospace;
-      font-size: 1.7em;
-      color: #ffffff;
-      text-shadow: 0 0 10px rgba(58,110,255,0.6);
-      line-height: 1;
-    }
-
-    .countdown-label {
-      font-family: 'Determination', monospace;
-      font-size: 0.62em;
-      color: #888;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      margin-top: 6px;
-    }
-
-    .countdown-note {
-      font-family: 'Determination', monospace;
-      font-size: 0.7em;
-      color: #666;
-      font-style: italic;
-      margin-top: 14px;
-      letter-spacing: 0.5px;
-    }
-
-    .countdown-refresh {
-      font-family: 'Determination', monospace;
-      font-size: 1.5em;
-      color: #ffe14d;
-      text-shadow: 0 0 12px rgba(255, 225, 77, 0.5);
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      padding: 14px 0;
-      margin: 0;
-    }
-
-    @media (max-width: 480px) {
-      .countdown-timer { gap: 8px; }
-      .countdown-unit { min-width: 44px; }
-      .countdown-number { font-size: 1.4em; }
-    }
-
-    /* ── VIDEO Trailer ── */
-    .video-wrapper {
-      margin-top: 20px;
-      max-width: 480px;
-      width: 100%;
-      position: relative;
-      cursor: pointer;
-    }
-
+    .video-wrapper { margin-top: 18px; max-width: 480px; width: 100%; position: relative; }
     .video-border {
-      position: relative;
-      padding: 6px;
-      background: transparent;
-      box-shadow:
-        0 0 0 2px #3a6eff,
-        0 0 0 4px #000,
-        0 0 0 6px #3a6eff;
+      position: relative; padding: 6px; background: transparent;
+      box-shadow: 0 0 0 2px var(--delta), 0 0 0 4px #000, 0 0 0 6px var(--delta);
       transition: box-shadow 0.25s ease;
     }
-
     .video-wrapper:hover .video-border {
-      box-shadow:
-        0 0 0 2px #ffffff,
-        0 0 0 4px #000,
-        0 0 0 6px #ffffff;
+      box-shadow: 0 0 0 2px var(--delta-hi), 0 0 0 4px #000, 0 0 0 6px var(--delta-hi), 0 0 30px rgba(58,110,255,0.3);
+    }
+    .video-container { overflow: hidden; width: 100%; }
+    .video-container iframe { display: block; width: 100%; aspect-ratio: 16/9; height: auto; }
+
+    /* Easter egg */
+    .void-easter-egg {
+      margin: 200px auto 90px; max-width: 460px; width: 100%; text-align: left;
+      opacity: 0; transform: translateY(15px);
+      transition: opacity 1s ease, transform 1s ease; pointer-events: none;
+    }
+    .void-easter-egg.visible { opacity: 1; transform: translateY(0); }
+    .void-easter-egg p {
+      font-family: 'Determination', monospace; font-size: 0.85rem; color: var(--bone);
+      letter-spacing: 0.5px; line-height: 2.1; margin: 0;
     }
 
-    .video-container {
-      overflow: hidden;
-      width: 100%;
+    /* ════════════════ DESCARGAS ════════════════ */
+    #page-descargas { padding: 54px 0 90px; min-height: calc(100vh - var(--nav-h) - var(--foot-h)); }
+
+    .dl-main { display: grid; grid-template-columns: 1.1fr 1fr; gap: 24px; align-items: stretch; }
+    @media (max-width: 720px) { .dl-main { grid-template-columns: 1fr; } }
+
+    .dl-main .box { display: flex; flex-direction: column; }
+    .dl-shot { width: 100%; border-radius: 4px; image-rendering: pixelated; border: 1px solid var(--line); }
+    .dl-info h3 {
+      font-family: 'Determination', monospace; font-size: 1.05rem; letter-spacing: 1px;
+      color: #fff; margin-bottom: 4px;
     }
+    .dl-info .ver { font-family: 'Determination', monospace; font-size: 0.72rem; color: var(--gold); letter-spacing: 1.5px; }
+    .dl-info p { color: var(--bone-dim); font-size: 0.95rem; line-height: 1.8; margin: 14px 0; }
+    .dl-info .btn-soul { margin-top: auto; align-self: flex-start; }
+    .os-line { font-family: 'Determination', monospace; font-size: 0.78rem; color: var(--muted); letter-spacing: 1px; margin-top: 14px; }
 
-    .video-container iframe {
-      display: block;
-      width: 100%;
-      aspect-ratio: 16/9;
-      height: auto;
-    }
-
-    /* ── PROGRESO ── */
-    .progress-card {
-      margin-top: 32px;
-      max-width: 480px;
-      width: 100%;
-      background-color: rgba(8, 8, 12, 0.6);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 6px;
-      padding: 28px 32px;
-      text-align: left;
-    }
-
-    .progress-title {
-      font-family: 'Determination', monospace;
-      font-size: 1em;
-      color: #fff;
-      letter-spacing: 1px;
-      margin-bottom: 4px;
-    }
-
-    .progress-subtitle {
-      font-family: 'Determination', monospace;
-      font-size: 0.75em;
-      color: #777;
-      margin-bottom: 20px;
-      letter-spacing: 1px;
-    }
-
-    .progress-item { margin-bottom: 16px; }
-
-    .progress-header {
-      display: flex;
-      justify-content: space-between;
-      font-family: 'Determination', monospace;
-      font-size: 0.85em;
-      color: #ddd;
-      margin-bottom: 5px;
-      letter-spacing: 1px;
-    }
-
-    .progress-bar-bg {
-      width: 100%;
-      height: 10px;
-      background-color: rgba(255,255,255,0.1);
-      border-radius: 3px;
-      overflow: hidden;
-    }
-
-    .progress-bar-fill {
-      height: 100%;
-      background-color: #00ff0d;
-      border-radius: 3px;
-      transition: width 0.8s ease;
-    }
-
-    .progress-note {
-      font-family: 'Determination', monospace;
-      font-size: 0.72em;
-      color: #888;
-      font-style: italic;
-      margin-top: 4px;
-      letter-spacing: 0.5px;
-    }
-
-    .progress-updated {
-      font-family: 'Determination', monospace;
-      font-size: 0.72em;
-      color: #555;
-      margin-top: 12px;
-      text-align: right;
-      letter-spacing: 0.5px;
-    }
-
-    /* ── DESCARGAS ── */
-    #page-descargas {
-      padding: 50px 40px 100px;
-      min-height: calc(100vh - 80px - 61px);
-    }
-
-    .page-title {
-      font-family: 'Determination', monospace;
-      font-size: 1.8em;
-      letter-spacing: 4px;
-      color: #fff;
-      text-shadow: 0 0 18px rgba(255,255,255,0.55), 0 0 40px rgba(255,255,255,0.18);
-      text-transform: uppercase;
-      margin-bottom: 36px;
-      text-align: center;
-      border-bottom: 1px solid rgba(255,255,255,0.15);
-      padding-bottom: 16px;
-      width: 100%;
-      max-width: 800px;
-    }
-
-    .catalog {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 28px;
-      width: 100%;
-    }
-
-    .chapter-card {
-      background-color: rgba(10, 10, 15, 0.6);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 6px;
-      width: 260px;
-      padding: 24px;
-      text-align: center;
-      color: white;
-      transition: border-color 0.25s ease, transform 0.2s ease;
-    }
-
-    .chapter-card:hover {
-      border-color: rgba(255,255,255,0.4);
-      transform: translateY(-3px);
-    }
-
-    .chapter-card img {
-      width: 100%;
-      border-radius: 4px;
-      image-rendering: pixelated;
-    }
-
-    .chapter-card h3 {
-      font-family: 'Determination', monospace;
-      font-size: 0.95em;
-      margin: 14px 0 6px;
-      color: #e0e0e0;
-      letter-spacing: 1px;
-    }
-
-    .chapter-card p {
-      font-size: 0.82em;
-      color: #777;
-      margin: 0 0 14px;
-    }
-
-    .download-button {
-      display: inline-block;
-      margin-top: 6px;
-      padding: 8px 20px;
-      background-color: transparent;
-      color: #ffffff;
-      font-family: 'Determination', monospace;
-      font-size: 0.82em;
-      font-weight: bold;
-      text-decoration: none;
-      border: 1px solid #ffffff;
-      border-radius: 4px;
-      letter-spacing: 1px;
-      cursor: pointer;
-      transition: background-color 0.2s ease, color 0.2s ease;
-    }
-
-    .download-button:hover {
-      background-color: #ffffff;
-      color: #000;
-    }
-
-    .download-button.ready {
-      background-color: #ffe14d;
-      color: #000;
-      border-color: #ffe14d;
-    }
-
-    .download-button.ready:hover {
-      background-color: #fff2a3;
-      border-color: #fff2a3;
-    }
-
-    /* ── EQUIPO ── */
-    #page-equipo {
-      padding: 50px 20px 100px;
-      min-height: calc(100vh - 80px - 61px);
-      gap: 32px;
-    }
-
-    #page-contacto {
-      padding: 50px 20px 100px;
-      min-height: calc(100vh - 80px - 61px);
-      justify-content: flex-start;
-    }
-
-    .content-card {
+    /* Pasos de instalación */
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 40px; }
+    @media (max-width: 720px) { .steps { grid-template-columns: 1fr; } }
+    .step {
+      background: var(--panel); border: 1px solid var(--line); border-radius: 4px; padding: 22px;
       position: relative;
-      z-index: 1;
-      max-width: 800px;
-      width: 100%;
-      padding: 40px 48px;
-      background-color: rgba(8, 8, 12, 0.6);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 6px;
-      color: #d0d0d0;
-      font-family: 'Determination', sans-serif;
-      line-height: 1.75;
     }
-
-    .content-card h1 {
-      font-size: 1.9em;
-      margin-bottom: 22px;
-      text-align: center;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      padding-bottom: 16px;
-      background: linear-gradient(180deg, #ffffff 0%, #a0a0b0 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      filter: drop-shadow(0 0 10px rgba(255,255,255,0.45)) drop-shadow(0 0 28px rgba(255,255,255,0.15));
-      border-bottom: 1px solid rgba(255,255,255,0.12);
+    .step .num {
+      font-family: 'Determination', monospace; font-size: 1.6rem; color: var(--delta);
+      line-height: 1; margin-bottom: 12px; display: block;
     }
+    .step h4 { font-family: 'Determination', monospace; font-size: 0.9rem; color: #fff; letter-spacing: 1px; margin-bottom: 8px; }
+    .step p { color: var(--bone-dim); font-size: 0.9rem; line-height: 1.75; }
 
-    .content-card h3 {
-      font-size: 0.85em;
-      margin: 22px 0 4px;
-      color: #aaaaaa;
-      text-align: center;
-      letter-spacing: 2px;
-      text-transform: uppercase;
+    .note {
+      margin-top: 34px; padding: 18px 22px; border-radius: 4px;
+      border: 1px solid rgba(255,217,74,0.28); background: rgba(255,217,74,0.05);
+      color: var(--bone-dim); font-size: 0.88rem; line-height: 1.8;
     }
-
-    .content-card h3 + p {
-      text-align: center;
-      color: #aaa;
-      margin-top: 0;
+    .note strong { color: var(--gold); }
+    /* Variante de advertencia (copia limpia): acento rojo del ALMA */
+    .note-warn {
+      border-color: rgba(255,45,85,0.32);
+      background: rgba(255,45,85,0.06);
     }
+    .note-warn strong { color: var(--soul); }
 
-    .content-card a {
-      color: #ffffff;
-      text-decoration: none;
-      border-bottom: 1px solid rgba(255,255,255,0.3);
-      transition: border-color 0.2s;
+    /* ════════════════ EQUIPO ════════════════ */
+    #page-equipo { padding: 54px 0 90px; min-height: calc(100vh - var(--nav-h) - var(--foot-h)); }
+
+    .about-card { margin-bottom: 44px; }
+    .about-card p { color: var(--bone-dim); line-height: 1.9; margin-bottom: 14px; font-size: 0.98rem; }
+    .about-card p:last-child { margin-bottom: 0; }
+    .about-card strong { color: #fff; }
+
+    /* Líder / coordinación destacado */
+    .lead-row {
+      display: flex; align-items: center; gap: 16px; margin-bottom: 34px;
+      padding: 20px 24px; border-radius: 4px;
+      background: linear-gradient(180deg, rgba(58,110,255,0.10), rgba(58,110,255,0.02));
+      border: 1px solid rgba(58,110,255,0.35);
     }
+    .lead-heart { width: 26px; height: 26px; background: var(--heart) center/contain no-repeat; flex: none; }
+    .lead-row .who { display: flex; flex-direction: column; }
+    .lead-row .role { font-family: 'Determination', monospace; font-size: 0.7rem; letter-spacing: 2px; color: var(--delta-hi); text-transform: uppercase; }
+    .lead-row .name { font-family: 'Determination', monospace; font-size: 1.15rem; color: #fff; letter-spacing: 1px; }
 
-    .content-card a:hover { border-bottom-color: #ffffff; }
+    /* Grid de roles del equipo */
+    .roster { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    @media (max-width: 620px) { .roster { grid-template-columns: 1fr; } }
+    .role-card {
+      background: var(--panel); border: 1px solid var(--line); border-radius: 4px;
+      padding: 20px 22px; transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+    .role-card:hover { border-color: var(--line-hi); transform: translateY(-2px); }
+    .role-card h4 {
+      font-family: 'Determination', monospace; font-size: 0.74rem; letter-spacing: 2px;
+      color: var(--delta-hi); text-transform: uppercase; margin-bottom: 14px;
+      display: flex; align-items: center; gap: 9px;
+    }
+    .role-card h4::before { content: ""; width: 6px; height: 6px; background: var(--delta); flex: none; }
+    .members { display: flex; flex-wrap: wrap; gap: 8px; }
+    .member {
+      font-family: 'DeterminationSans', sans-serif; font-size: 0.85rem; color: var(--bone-dim);
+      background: rgba(255,255,255,0.04); border: 1px solid var(--line);
+      padding: 5px 11px; border-radius: 999px; letter-spacing: 0.3px;
+      transition: color 0.15s ease, border-color 0.15s ease;
+    }
+    .member:hover { color: #fff; border-color: var(--delta); }
 
-    /* ── Footer ── */
+    .thanks { text-align: center; color: var(--muted); font-size: 0.95rem; margin-top: 40px; line-height: 1.8; text-wrap: balance; }
+    .thanks strong { color: var(--bone-dim); }
+
+    /* ════════════════ CONTACTO / FAQ ════════════════ */
+    #page-contacto { padding: 54px 0 90px; min-height: calc(100vh - var(--nav-h) - var(--foot-h)); }
+
+    .faq { display: flex; flex-direction: column; gap: 10px; margin-bottom: 46px; }
+    .faq-item { border: 1px solid var(--line); border-radius: 4px; background: var(--panel); overflow: hidden; }
+    .faq-q {
+      width: 100%; text-align: left; background: none; border: none; cursor: pointer;
+      color: var(--bone); font-family: 'Determination', monospace; font-size: 0.92rem;
+      letter-spacing: 0.5px; padding: 18px 20px 18px 44px; position: relative;
+      display: flex; justify-content: space-between; align-items: center; gap: 12px;
+      transition: color 0.15s ease;
+    }
+    .faq-q::before {
+      content: ""; position: absolute; left: 18px; top: 50%;
+      width: 13px; height: 13px; transform: translateY(-50%) scale(0.3);
+      background: var(--heart) center/contain no-repeat; opacity: 0;
+      transition: opacity 0.15s ease, transform 0.15s ease;
+    }
+    .faq-q:hover { color: #fff; }
+    .faq-q:hover::before { opacity: 1; transform: translateY(-50%) scale(1); }
+    .faq-q .chev { color: var(--delta); font-family: 'Determination', monospace; transition: transform 0.25s ease; flex: none; }
+    .faq-item.open .faq-q .chev { transform: rotate(90deg); }
+    .faq-a {
+      max-height: 0; overflow: hidden; color: var(--bone-dim); font-size: 0.95rem; line-height: 1.85;
+      transition: max-height 0.3s ease, padding 0.3s ease; padding: 0 20px 0 44px;
+    }
+    .faq-item.open .faq-a { max-height: 500px; padding: 0 20px 18px 44px; }
+    .faq-a a { color: var(--delta-hi); }
+
+    /* Tarjetas sociales */
+    .socials-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    @media (max-width: 560px) { .socials-grid { grid-template-columns: 1fr; } }
+    .social-card {
+      display: flex; align-items: center; gap: 14px; text-decoration: none;
+      background: var(--panel); border: 1px solid var(--line); border-radius: 4px;
+      padding: 16px 18px; transition: border-color 0.2s ease, transform 0.2s ease, background 0.2s ease;
+    }
+    .social-card:hover { border-color: var(--delta); transform: translateY(-2px); background: var(--panel-hi); }
+    .social-card img { height: 30px; width: 30px; object-fit: contain; flex: none; }
+    .social-card .txt { display: flex; flex-direction: column; }
+    .social-card .plat { font-family: 'Determination', monospace; font-size: 0.9rem; color: #fff; letter-spacing: 0.5px; }
+    .social-card .handle { font-size: 0.85rem; color: var(--muted); }
+
+    /* ════════════════ FOOTER ════════════════ */
     .bottom-navbar {
-      opacity: 0;
-      transition: opacity 0.8s ease;
-      background-color: #000000;
-      display: flex;
-      justify-content: center;
-      gap: 40px;
-      padding: 15px 0;
-      box-shadow: 0 -1px 0 rgba(255,255,255,0.08);
-      z-index: 200;
-      width: 100%;
-      position: fixed;
-      bottom: 0;
-      left: 0;
+      opacity: 0; transition: opacity 0.8s ease;
+      background: rgba(5,5,7,0.9); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      display: flex; justify-content: center; align-items: center; gap: 34px;
+      padding: 14px 0; border-top: 1px solid var(--line);
+      z-index: 200; width: 100%; position: fixed; bottom: 0; left: 0; height: var(--foot-h);
+      pointer-events: none;
     }
-
+    .bottom-navbar[style*="opacity: 1"] { pointer-events: auto; }
     .bottom-navbar a img {
-      height: 38px;
-      filter: brightness(0) invert(1);
-      transition: transform 0.2s ease, filter 0.2s ease;
-      cursor: pointer;
-      display: block;
+      height: 30px; filter: brightness(0) invert(1); opacity: 0.72;
+      transition: transform 0.2s ease, filter 0.2s ease, opacity 0.2s ease;
+      cursor: pointer; display: block;
     }
-
     .bottom-navbar a:hover img {
-      transform: scale(1.2);
-      filter: brightness(0) invert(1) drop-shadow(0 0 5px rgba(255,255,255,0.6));
+      transform: scale(1.18); opacity: 1;
+      filter: brightness(0) invert(1) drop-shadow(0 0 6px rgba(58,110,255,0.7));
     }
+    .bottom-navbar a:focus-visible { outline: 2px solid var(--delta); outline-offset: 4px; border-radius: 2px; }
 
-    /* Transición entre páginas */
-    .page {
-      display: none;
-      flex: 1;
-      flex-direction: column;
-      align-items: center;
-      position: relative;
-      z-index: 1;
-      opacity: 0;
-      transform: translateX(30px);
-      transition: all 0.5s ease;
-    }
+    /* Reveal on scroll */
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.in { opacity: 1; transform: translateY(0); }
 
-    .page.active {
-      display: flex;
-      opacity: 1;
-      transform: translateX(0);
-    }
-
-    .page.leaving {
-      opacity: 0;
-      transform: translateX(-30px);
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+      .reveal { opacity: 1; transform: none; }
     }
   </style>
 </head>
 <body class="bloquear-scroll">
 
-  <!-- Splash screen -->
+  <!-- ── Splash ── -->
   <div id="splash">
-    <img src="img/logo-ch5.png" alt="Letra Delta" class="splash-logo">
+    <img src="img/logo-ch5.png" alt="Letra Delta — Parche de traducción de Deltarune al español" class="splash-logo">
     <p class="splash-bienvenida">
-      Gracias por optar por nuestro parche de localización.<br>
-      Cada línea fue escrita con cariño para que usted disfrute<br>
-      Deltarune en español a la visión de Toby Fox.
+      Gracias por elegir nuestro parche de localización.<br>
+      Cada línea fue escrita con cariño para que disfrutes<br>
+      Deltarune en español, fiel a la visión de Toby Fox.
     </p>
-    <p class="splash-continuar">— Haga click o presione cualquier tecla para ingresar. —</p>
+    <p class="splash-continuar">— Haz clic o presiona cualquier tecla para entrar —</p>
   </div>
 
-  <nav class="navbar desactivado" id="main-navbar">
-    <a href="#" class="logo-button desactivado" onclick="showPage('inicio')" title="Inicio">
-      <img src="favicon.png" alt="Letra Delta">
+  <!-- ── Navbar ── -->
+  <nav class="navbar" id="main-navbar">
+    <a href="#" class="logo-button" onclick="showPage('inicio'); return false;" title="Letra Delta — Inicio">
+      <img src="favicon.png" alt="Logo de Letra Delta">
     </a>
     <div class="nav-left">
-      <button class="nav-button active desactivado" id="btn-inicio"    onclick="showPage('inicio')">INICIO</button>
-      <button class="nav-button desactivado" id="btn-descargas" style="display:none;" aria-hidden="true" tabindex="-1">DESCARGAS</button>
-      <button class="nav-button desactivado"        id="btn-equipo"    onclick="showPage('equipo')">EQUIPO</button>
-      <button class="nav-button desactivado"        id="btn-contacto"  onclick="showPage('contacto')"><span class="nav-label-full">FAQ / CONTACTO</span><span class="nav-label-short">FAQ</span></button>
+      <button class="nav-button active" id="btn-inicio"   onclick="showPage('inicio')" aria-current="page">INICIO</button>
+      <button class="nav-button"        id="btn-descargas" onclick="showPage('descargas')">DESCARGAS</button>
+      <button class="nav-button"        id="btn-equipo"   onclick="showPage('equipo')">EQUIPO</button>
+      <button class="nav-button"        id="btn-contacto" onclick="showPage('contacto')"><span class="nav-label-full">FAQ / CONTACTO</span><span class="nav-label-short">FAQ</span></button>
     </div>
   </nav>
 
-  <!-- INICIO -->
+  <!-- ════════ INICIO ════════ -->
   <section class="page active" id="page-inicio">
     <div class="logo-video-wrap">
       <video playsinline id="logo-video" class="logo-video"></video>
-      <img src="img/logo-ch5.png" alt="Deltarune" class="logo-png" id="logo-png">
+      <img src="img/logo-ch5.png" alt="Deltarune traducido al español neutro por Letra Delta" class="logo-png" id="logo-png">
     </div>
 
     <div class="intro-content">
-      <p class="subtitle">DELTARUNE AL ESPAÑOL NEUTRO.</p>
+      <h1 class="subtitle">DELTARUNE AL <span class="tooltip-term" title='Español neutro = español latinoamericano, sin modismos de una región específica.'>ESPAÑOL NEUTRO</span></h1>
 
-      <div class="countdown-card" id="countdown-card">
-        <p class="countdown-title">▲ El parche sale en</p>
-        <div class="countdown-timer">
-          <div class="countdown-unit">
-            <span class="countdown-number" id="cd-hours">00</span>
-            <span class="countdown-label">Horas</span>
-          </div>
-          <div class="countdown-unit">
-            <span class="countdown-number" id="cd-mins">00</span>
-            <span class="countdown-label">Min</span>
-          </div>
-          <div class="countdown-unit">
-            <span class="countdown-number" id="cd-secs">00</span>
-            <span class="countdown-label">Seg</span>
-          </div>
-        </div>
-        <p class="countdown-note" id="countdown-note">Sábado, hora estimada.</p>
+      <div class="hero-tags">
+        <span class="tag gold">Gratis</span>
+        <span class="tag">Capítulos 1–5</span>
+        <span class="tag">Windows · macOS</span>
+        <span class="tag">Compatible con Deltranslate</span>
       </div>
 
-      <p class="section-label">Trailer</p>
+      <div class="hero-download">
+        <img src="img/screenshot.png" class="hero-shot" alt="Captura de Deltarune en español, capítulos 1 al 5">
+        <div class="box">
+          <span class="tick-b"></span><span class="tick-c"></span>
+          <h3>Parche de Localización · Cap. 1–5</h3>
+          <p>Un solo instalador aplica la traducción completa. Descárgalo, ábrelo y sigue los pasos.</p>
+          <a href="https://github.com/BroxiCoros/InstaladorLetraDelta/releases/download/v1.1.0/InstaladorLetraDelta.exe" class="btn-soul" target="_blank" rel="noopener noreferrer">
+            Descargar instalador <span class="meta">· v1.1.0</span>
+          </a>
+          <p class="hero-warn"><strong>Requiere una copia limpia:</strong> sin otros parches ni mods. Si ya modificaste el juego, reinstálalo desde Steam antes de aplicar el parche.</p>
+        </div>
+      </div>
+
+      <h2 class="section-label">Tráiler oficial</h2>
       <div class="video-wrapper">
         <div class="video-border">
           <div class="video-container">
             <iframe src="https://www.youtube.com/embed/X_3lN8CsEpo"
-                    title="Trailer Letra Delta"
+                    title="Tráiler oficial de Letra Delta — Parche de localización de Deltarune en español"
+                    loading="lazy"
                     frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     referrerpolicy="strict-origin-when-cross-origin"
@@ -820,329 +654,381 @@
         </div>
       </div>
 
-      <div class="progress-card">
-        <p class="progress-title">▲ Estado del proyecto</p>
-        <p class="progress-subtitle">Progreso actual de la traducción</p>
-
-        <div class="progress-item">
-          <div class="progress-header"><span>Capítulo 1</span><span>100%</span></div>
-          <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:100%"></div></div>
-          <p class="progress-note">Revisión completa.</p>
-        </div>
-        
-        <div class="progress-item">
-          <div class="progress-header"><span>Capítulo 2</span><span>100%</span></div>
-          <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:100%"></div></div>
-          <p class="progress-note">Revisión completa.</p>
-        </div>
-        
-        <div class="progress-item">
-          <div class="progress-header"><span>Capítulo 3</span><span>100%</span></div>
-          <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:100%"></div></div>
-          <p class="progress-note">Revisión completa.</p>
-        </div>
-        
-        <div class="progress-item">
-          <div class="progress-header"><span>Capítulo 4</span><span>100%</span></div>
-          <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:100%"></div></div>
-          <p class="progress-note">Revisión completa.</p>
-        </div>
-        
-        <div class="progress-item">
-          <div class="progress-header"><span>Capítulo 5</span><span>100%</span></div>
-          <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:100%"></div></div>
-          <p class="progress-note">Revisión completa.</p>
-        </div>
-
-        <p class="progress-updated">Última actualización: 11 de julio.</p>
-      </div>
+      <div class="void-easter-egg" id="void-easter-egg" aria-hidden="true"></div>
     </div>
   </section>
 
-  <!-- DESCARGAS -->
+  <!-- ════════ DESCARGAS ════════ -->
   <section class="page" id="page-descargas">
-    <p class="page-title">Descargas</p>
-    <div class="catalog">
-      <div class="chapter-card">
-        <img src="img/screenshot.png" alt="Capítulos 1 al 4">
-        <h3>Capítulos 1, 2, 3 y 4</h3>
-        <p id="chapter5-note">¡Ya disponible! Capítulo 5 traducido.</p>
-        <a href="https://drive.google.com/file/d/1MV8axFbbFiUd5-IkW26TlZppVsgrU5pP/view?usp=drive_link" id="chapter5-download" class="download-button ready" target="_blank" rel="noopener noreferrer">Descarga Normal</a>
-        <a href="https://drive.google.com/file/d/1riZ3MPOU95we5lnXNmPqcUnekEJySNt4/view?usp=drive_link" id="chapter5-download-bordes" class="download-button ready" target="_blank" rel="noopener noreferrer" style="margin-top:10px;">Descarga con bordes</a>
+    <div class="wrap">
+      <p class="eyebrow">Descarga</p>
+      <h1 class="page-title">El Parche</h1>
+      <p class="page-lead">Toda la traducción vive en un único instalador. Sin registros, sin costo: solo el juego en tu idioma.</p>
+
+      <div class="dl-main reveal">
+        <div class="box">
+          <span class="tick-b"></span><span class="tick-c"></span>
+          <img src="img/screenshot.png" class="dl-shot" alt="Captura de Deltarune traducido al español">
+        </div>
+        <div class="box dl-info">
+          <span class="tick-b"></span><span class="tick-c"></span>
+          <span class="ver">VERSIÓN 1.1.0</span>
+          <h3>Instalador Letra Delta</h3>
+          <p>Aplica la localización al español neutro de los Capítulos 1, 2, 3, 4 y 5 sobre tu copia de Deltarune. Se distribuye como complemento del mod Deltranslate.</p>
+          <a href="https://github.com/BroxiCoros/InstaladorLetraDelta/releases/download/v1.1.0/InstaladorLetraDelta.exe" class="btn-soul" target="_blank" rel="noopener noreferrer">Descargar ahora</a>
+          <p class="os-line">WINDOWS · MACOS · ~40 MB</p>
+        </div>
+      </div>
+
+      <p class="note note-warn reveal"><strong>⚠ Instala sobre una copia limpia.</strong> El parche debe aplicarse sobre una instalación de Deltarune sin otros parches ni mods. Si ya modificaste el juego, desinstálalo y vuelve a instalarlo desde Steam antes de aplicar el parche.</p>
+
+      <div class="steps">
+        <div class="step reveal"><span class="num">1</span><h4>Descarga</h4><p>Baja el instalador desde el botón de arriba. Es seguro y de código abierto en GitHub.</p></div>
+        <div class="step reveal"><span class="num">2</span><h4>Ejecuta</h4><p>Ábrelo con Deltarune cerrado. El instalador detecta el juego y aplica el parche por ti.</p></div>
+        <div class="step reveal"><span class="num">3</span><h4>Juega</h4><p>Abre Deltarune y disfruta la historia completa en español. ¡Eso es todo!</p></div>
+      </div>
+
+      <p class="note reveal"><strong>Compatibilidad:</strong> el parche funciona junto al mod Deltranslate de Neprim. Si encuentras un error o una línea sin traducir, cuéntanoslo en nuestro <a href="https://discord.com/invite/39Mu5DFEx7" target="_blank" rel="noopener noreferrer">Discord</a> y lo corregimos.</p>
+    </div>
+  </section>
+
+  <!-- ════════ EQUIPO ════════ -->
+  <section class="page" id="page-equipo">
+    <div class="wrap">
+      <p class="eyebrow">Quiénes somos</p>
+      <h1 class="page-title">El Equipo</h1>
+      <p class="page-lead">Un grupo de fans que localiza Deltarune al español, cuidando el tono, el humor y cada matiz del texto original.</p>
+
+      <div class="box about-card reveal">
+        <span class="tick-b"></span><span class="tick-c"></span>
+        <p>Somos un grupo de fans apasionados que decidimos traducir y localizar <strong>Deltarune</strong> al <strong>español americano / neutro</strong>.</p>
+        <p>Nuestra motivación es simple: que quienes no dominan el inglés puedan disfrutar el juego al máximo, sin perderse ni un detalle de la historia, los personajes y el humor que lo hacen tan especial.</p>
+        <p>La traducción se distribuye como complemento del mod <strong>Deltranslate</strong> de Neprim, con un registro claro, coherente y respetuoso con los matices del texto original de Toby Fox.</p>
+      </div>
+
+      <div class="lead-row reveal">
+        <span class="lead-heart"></span>
+        <span class="who">
+          <span class="role">Coordinación</span>
+          <span class="name">Broxi</span>
+        </span>
+      </div>
+
+      <div class="roster">
+        <div class="role-card reveal">
+          <h4>Traducción</h4>
+          <div class="members"><span class="member">Broxi</span><span class="member">Sketchy</span><span class="member">NoSoyKío</span><span class="member">LinuxPa</span><span class="member">ItsLadyBee</span><span class="member">sweetsparklez</span><span class="member">SHUL_13</span><span class="member">Little Lute</span></div>
+        </div>
+        <div class="role-card reveal">
+          <h4>Revisión</h4>
+          <div class="members"><span class="member">napolytus</span><span class="member">Staipor</span><span class="member">Mapple_Yellow</span><span class="member">JoaTank</span><span class="member">alcachofa47</span><span class="member">Angeldx567</span><span class="member">Minina 7431</span><span class="member">Ant</span></div>
+        </div>
+        <div class="role-card reveal">
+          <h4>Arte</h4>
+          <div class="members"><span class="member">Sketchy</span><span class="member">NoSoyKío</span><span class="member">Minina 7431</span><span class="member">Mako</span><span class="member">Lein Moriguo</span><span class="member">Broxi</span></div>
+        </div>
+        <div class="role-card reveal">
+          <h4>Programación</h4>
+          <div class="members"><span class="member">LinuxPa</span><span class="member">Broxi</span><span class="member">Perabajadev</span></div>
+        </div>
+        <div class="role-card reveal">
+          <h4>Doblaje</h4>
+          <div class="members"><span class="member">Mako (Flowery)</span></div>
+        </div>
+        <div class="role-card reveal">
+          <h4>Producción de audio</h4>
+          <div class="members"><span class="member">Little Lute</span></div>
+        </div>
+        <div class="role-card reveal">
+          <h4>Tráiler y vídeo dentro del juego</h4>
+          <div class="members"><span class="member">LinuxPa</span></div>
+        </div>
+        <div class="role-card reveal">
+          <h4>Bordes dinámicos</h4>
+          <div class="members"><span class="member">IRUZZ / NXRUNE</span></div>
+        </div>
+      </div>
+
+      <p class="thanks reveal">Gracias a todos los que hicieron esto posible. Con dedicación, el equipo de <strong>Letra Delta</strong>.</p>
+    </div>
+  </section>
+
+  <!-- ════════ FAQ / CONTACTO ════════ -->
+  <section class="page" id="page-contacto">
+    <div class="wrap">
+      <p class="eyebrow">Ayuda</p>
+      <h1 class="page-title">FAQ &amp; Contacto</h1>
+      <p class="page-lead">Las preguntas más comunes y dónde encontrarnos. ¿No ves tu duda? Escríbenos en Discord.</p>
+
+      <div class="faq">
+        <div class="faq-item reveal">
+          <button class="faq-q">¿El parche es gratis? <span class="chev">›</span></button>
+          <div class="faq-a">Sí, completamente gratis. Es un proyecto de fans, sin fines de lucro y de código abierto.</div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-q">¿Qué capítulos incluye? <span class="chev">›</span></button>
+          <div class="faq-a">Los Capítulos 1, 2, 3, 4 y 5. Un solo instalador aplica toda la traducción.</div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-q">¿Cómo lo instalo? <span class="chev">›</span></button>
+          <div class="faq-a">Descarga el instalador desde la sección <a href="#" onclick="showPage('descargas'); return false;">Descargas</a>, ábrelo con el juego cerrado y sigue los tres pasos. Detecta Deltarune y aplica el parche automáticamente.</div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-q">¿Necesito una copia sin modificar? <span class="chev">›</span></button>
+          <div class="faq-a">Sí. Instálalo sobre una copia limpia de Deltarune, sin otros parches ni mods aplicados. Si ya modificaste el juego, lo más sencillo es desinstalarlo y reinstalarlo desde Steam antes de aplicar el parche.</div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-q">¿Funciona en Mac? <span class="chev">›</span></button>
+          <div class="faq-a">Sí. El parche es compatible con Windows y macOS.</div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-q">Encontré un error de traducción, ¿qué hago? <span class="chev">›</span></button>
+          <div class="faq-a">¡Nos ayudas muchísimo reportándolo! Cuéntanos en el <a href="https://discord.com/invite/39Mu5DFEx7" target="_blank" rel="noopener noreferrer">Discord</a> qué línea encontraste y en qué capítulo, y lo revisamos.</div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-q">¿Qué es Deltranslate? <span class="chev">›</span></button>
+          <div class="faq-a">Es el mod base de Neprim que permite cargar traducciones en Deltarune. Nuestro parche funciona como complemento de él.</div>
+        </div>
+      </div>
+
+      <p class="eyebrow" style="margin-bottom:18px;">Encuéntranos</p>
+      <div class="socials-grid reveal">
+        <a class="social-card" href="https://discord.com/invite/39Mu5DFEx7" target="_blank" rel="noopener noreferrer">
+          <img src="img/discord.png" alt="Discord">
+          <span class="txt"><span class="plat">Discord</span><span class="handle">Comunidad y soporte</span></span>
+        </a>
+        <a class="social-card" href="https://x.com/LetraDelta" target="_blank" rel="noopener noreferrer">
+          <img src="img/twitter.png" alt="Twitter / X">
+          <span class="txt"><span class="plat">Twitter / X</span><span class="handle">@LetraDelta</span></span>
+        </a>
+        <a class="social-card" href="https://www.tiktok.com/@linucali" target="_blank" rel="noopener noreferrer">
+          <img src="img/tiktok.png" alt="TikTok">
+          <span class="txt"><span class="plat">TikTok</span><span class="handle">Novedades y clips</span></span>
+        </a>
+        <a class="social-card" href="https://www.youtube.com/@linuxPa" target="_blank" rel="noopener noreferrer">
+          <img src="img/youtube.png" alt="YouTube">
+          <span class="txt"><span class="plat">YouTube</span><span class="handle">Tráilers y vídeos</span></span>
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- EQUIPO -->
-  <section class="page" id="page-equipo">
-    <div class="content-card">
-      <h1>Sobre Nosotros</h1>
-      <p>Somos un grupo de fans apasionados que decidimos traducir <strong>Deltarune</strong> al <strong>español americano</strong>.</p>
-      <p>Nuestra motivación es simple: queremos que los hispanohablantes que no tengan mucho conocimiento del inglés puedan disfrutar de este juego al máximo, sin perderse ningún detalle de la historia, los personajes y el humor que lo hacen tan especial.</p>
-      <p>La traducción se distribuye como complemento del mod <strong>Deltranslate</strong> de Neprim, y se rige por un registro claro, coherente y respetuoso con el tono y los matices del texto original.</p>
-    </div>
-
-    <div class="content-card">
-      <h1>Equipo del Proyecto</h1>
-
-      <h3>Coordinación</h3>
-      <p>Broxi</p>
-
-      <h3>Traducción</h3>
-      <p>Broxi · Sketchy · NoSoyKío · LinuxPa · ItsLadyBee · sweetsparklez · SHUL_13 · LittleLute</p>
-
-      <h3>Revisión</h3>
-      <p>napolytus · Staipor · Mapple_Yellow · JoaTank · alcachofa47 · Angeldx567 · Minina 7431 · Ant</p>
-
-      <h3>Arte</h3>
-      <p>Sketchy · NoSoyKío · Minina 7431 · Mako · Lein Moriguo · Broxi</p>
-
-      <h3>Doblaje</h3>
-      <p>Mako (Flowery)</p>
-
-      <h3>Programación</h3>
-      <p>LinuxPa · Broxi · Perabajadev</p>
-
-      <h3>Edición de Trailer y vídeo dentro del juego</h3>
-      <p>LinuxPa</p>
-
-      <h3>Producción de audio</h3>
-      <p>LittleLute</p>
-
-      <h3>Bordes dinámicos</h3>
-      <p>IRUZZ o NXRUNE</p>
-
-      <p style="margin-top:24px; color:#888; font-size:0.9em; text-align:center;">
-        Agradecemos a todos los que contribuyeron al proyecto. Con dedicación, el equipo de <strong style="color:#d0d0d0">Letra Delta</strong>.
-      </p>
-    </div>
-  </section>
-
-  <!-- CONTACTO -->
-  <section class="page" id="page-contacto">
-    <div class="content-card">
-      <h1>FAQ / Contacto</h1>
-      <p>Tenemos un server de <strong><a href="https://discord.gg/MTjWtnCJkx" target="_blank">Discord</a></strong> donde podés hablar con la comunidad y con los participantes del proyecto, y enterarte de los avances antes que nadie.</p>
-      <p>También estamos en <strong><a href="https://x.com/LetraDelta" target="_blank">Twitter / X</a></strong> como <strong>@LetraDelta</strong>, donde publicamos noticias y avances del proyecto.</p>
-      <p>Y en <strong><a href="https://www.tiktok.com/@linucali" target="_blank">TikTok</a></strong> subimos contenido relacionado con el proyecto y otros temas de interés.</p>
-    </div>
-  </section>
-
-  <!-- Footer fijo -->
+  <!-- ── Footer ── -->
   <footer class="bottom-navbar">
-    <a href="https://twitter.com/LetraDelta" target="_blank" title="Twitter"><img src="img/twitter.png" alt="Twitter"></a>
-    <a href="https://discord.gg/MTjWtnCJkx" target="_blank" title="Discord"><img src="img/discord.png" alt="Discord"></a>
-    <a href="https://www.tiktok.com/@linucali" title="TikTok"><img src="img/tiktok.png" alt="TikTok"></a>
-    <a href="https://www.youtube.com/@linuxPa" title="YouTube"><img src="img/youtube.png" alt="YouTube"></a>
+    <a href="https://x.com/LetraDelta" target="_blank" rel="noopener noreferrer" title="Twitter / X de Letra Delta"><img src="img/twitter.png" alt="Twitter / X"></a>
+    <a href="https://discord.com/invite/39Mu5DFEx7" target="_blank" rel="noopener noreferrer" title="Discord oficial de Letra Delta"><img src="img/discord.png" alt="Discord"></a>
+    <a href="https://www.tiktok.com/@linucali" target="_blank" rel="noopener noreferrer" title="TikTok"><img src="img/tiktok.png" alt="TikTok"></a>
+    <a href="https://www.youtube.com/@linuxPa" target="_blank" rel="noopener noreferrer" title="YouTube"><img src="img/youtube.png" alt="YouTube"></a>
   </footer>
 
   <audio id="hover-sound" src="SFX/snd_menumove.wav" preload="auto"></audio>
   <audio id="select-sound" src="SFX/snd_select.wav" preload="auto"></audio>
 
-<script>
+  <script>
     const logoVideo    = document.getElementById('logo-video');
     const logoPng      = document.getElementById('logo-png');
     const splash       = document.getElementById('splash');
     const navbar       = document.getElementById('main-navbar');
     const introContent = document.querySelector('#page-inicio .intro-content');
     const bottomNavbar = document.querySelector('.bottom-navbar');
-
-    const hoverSound  = document.getElementById('hover-sound');
-    const selectSound = document.getElementById('select-sound');
+    const hoverSound   = document.getElementById('hover-sound');
+    const selectSound  = document.getElementById('select-sound');
 
     let introStarted = false;
 
     function activarContenido() {
-        document.body.classList.remove('bloquear-scroll');
-        navbar.classList.remove('desactivado');
-        document.querySelectorAll('.navbar, .nav-button, .logo-button').forEach(el => {
-            el.classList.remove('desactivado');
-        });
+      document.body.classList.remove('bloquear-scroll');
     }
 
-    logoVideo.addEventListener('ended', () => {
-        logoVideo.style.visibility = 'hidden';
-    });
+    logoVideo.addEventListener('ended', () => { logoVideo.style.visibility = 'hidden'; });
+
+    function revelarContenido() {
+      logoPng.style.opacity = '1';
+      navbar.classList.add('visible');
+      if (bottomNavbar) bottomNavbar.style.opacity = '1';
+      if (introContent) introContent.classList.add('visible');
+      document.body.classList.add('flores-animar');
+      setTimeout(() => document.body.classList.add('flores-ready'), 100);
+      activarContenido();
+    }
 
     function startIntro() {
-        if (introStarted) return;
-        introStarted = true;
+      if (introStarted) return;
+      introStarted = true;
 
-        splash.style.transition = 'opacity 0.7s ease';
-        splash.style.opacity = '0';
-        setTimeout(() => splash.remove(), 700);
+      splash.style.transition = 'opacity 0.7s ease';
+      splash.style.opacity = '0';
+      setTimeout(() => splash.remove(), 700);
 
-        cargarVideo(() => logoVideo.play().catch(() => {}));
+      cargarVideo(() => logoVideo.play().catch(() => {}));
 
-        let contenidoMostrado = false;
-
-        logoVideo.addEventListener('timeupdate', () => {
-            if (!contenidoMostrado && logoVideo.currentTime >= 5) {
-                contenidoMostrado = true;
-
-                logoPng.style.opacity = '1';
-                navbar.classList.add('visible');
-                if (bottomNavbar) bottomNavbar.style.opacity = '1';
-                if (introContent) introContent.classList.add('visible');
-
-                document.body.classList.add('flores-animar');
-                setTimeout(() => document.body.classList.add('flores-ready'), 100);
-                
-                activarContenido();
-            }
-        });
-
-        setTimeout(() => {
-            if (!contenidoMostrado) {
-                contenidoMostrado = true;
-                logoPng.style.opacity = '1';
-                navbar.classList.add('visible');
-                if (bottomNavbar) bottomNavbar.style.opacity = '1';
-                if (introContent) introContent.classList.add('visible');
-                document.body.classList.add('flores-animar');
-                setTimeout(() => document.body.classList.add('flores-ready'), 100);
-                
-                activarContenido();
-            }
-        }, 5800);
+      let mostrado = false;
+      logoVideo.addEventListener('timeupdate', () => {
+        if (!mostrado && logoVideo.currentTime >= 5) { mostrado = true; revelarContenido(); }
+      });
+      setTimeout(() => { if (!mostrado) { mostrado = true; revelarContenido(); } }, 5800);
     }
 
     function showPage(id) {
-        const currentPage = document.querySelector('.page.active');
-        const newPage = document.getElementById('page-' + id);
+      const currentPage = document.querySelector('.page.active');
+      const newPage = document.getElementById('page-' + id);
+      if (!newPage || currentPage === newPage) return;
 
-        if (!newPage || currentPage === newPage) return;
+      const activarBtn = () => {
+        document.querySelectorAll('.nav-button').forEach(b => {
+          b.classList.remove('active');
+          b.removeAttribute('aria-current');
+        });
+        const activeBtn = document.getElementById('btn-' + id);
+        if (activeBtn) { activeBtn.classList.add('active'); activeBtn.setAttribute('aria-current', 'page'); }
+      };
 
-        if (currentPage) {
-            currentPage.classList.add('leaving');
-            setTimeout(() => {
-                currentPage.classList.remove('active', 'leaving');
-                newPage.classList.add('active');
-                
-                document.querySelectorAll('.nav-button').forEach(b => b.classList.remove('active'));
-                const activeBtn = document.getElementById('btn-' + id);
-                if (activeBtn) activeBtn.classList.add('active');
-
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }, 400);
-        } else {
-            newPage.classList.add('active');
-            document.querySelectorAll('.nav-button').forEach(b => b.classList.remove('active'));
-            const activeBtn = document.getElementById('btn-' + id);
-            if (activeBtn) activeBtn.classList.add('active');
-        }
+      if (currentPage) {
+        currentPage.classList.add('leaving');
+        setTimeout(() => {
+          currentPage.classList.remove('active', 'leaving');
+          newPage.classList.add('active');
+          activarBtn();
+          observarReveals(newPage);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }, 380);
+      } else {
+        newPage.classList.add('active');
+        activarBtn();
+      }
     }
 
     function cargarVideo(callback) {
-        fetch('img/logo-ch5.mp4')
-            .then(r => r.blob())
-            .then(blob => {
-                logoVideo.src = URL.createObjectURL(blob);
-                logoVideo.load();
-                callback();
-            })
-            .catch(() => {
-                logoVideo.src = 'img/logo-ch5.mp4';
-                logoVideo.load();
-                callback();
-            });
+      fetch('img/logo-ch5.mp4')
+        .then(r => r.blob())
+        .then(blob => { logoVideo.src = URL.createObjectURL(blob); logoVideo.load(); callback(); })
+        .catch(() => { logoVideo.src = 'img/logo-ch5.mp4'; logoVideo.load(); callback(); });
     }
 
-    function playHover() {
-        if (hoverSound) { hoverSound.currentTime = 0; hoverSound.play().catch(() => {}); }
-    }
-
-    function playSelect(e) {
-        if (e.currentTarget.classList.contains('desactivado')) return;
-        if (selectSound) { selectSound.currentTime = 0; selectSound.play().catch(() => {}); }
-    }
+    function playHover() { if (hoverSound) { hoverSound.currentTime = 0; hoverSound.play().catch(() => {}); } }
+    function playSelect() { if (selectSound) { selectSound.currentTime = 0; selectSound.play().catch(() => {}); } }
 
     function initSounds() {
-        const elements = document.querySelectorAll('.nav-button, .logo-button, .download-button, .chapter-card, .bottom-navbar a');
-        elements.forEach(el => {
-            el.addEventListener('mouseenter', (e) => {
-                if (!el.classList.contains('desactivado')) playHover();
-            });
-            el.addEventListener('click', playSelect);
-        });
+      if (hoverSound)  hoverSound.volume  = 0.35;
+      if (selectSound) selectSound.volume = 0.5;
+      // Solo la navegación principal suena, para que sea agradable y no un pitido constante
+      document.querySelectorAll('.nav-button').forEach(el => {
+        el.addEventListener('mouseenter', playHover);
+        el.addEventListener('click', playSelect);
+      });
+      document.querySelectorAll('.btn-soul').forEach(el => {
+        el.addEventListener('click', playSelect);
+      });
     }
 
+    /* FAQ acordeón */
+    function initFaq() {
+      document.querySelectorAll('.faq-q').forEach(q => {
+        q.addEventListener('click', () => q.closest('.faq-item').classList.toggle('open'));
+      });
+    }
+
+    /* Reveal on scroll */
+    let revealObserver;
+    function initRevealObserver() {
+      if (!('IntersectionObserver' in window)) {
+        document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+        return;
+      }
+      revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); revealObserver.unobserve(e.target); } });
+      }, { threshold: 0.12 });
+    }
+    function observarReveals(scope) {
+      if (!revealObserver) return;
+      (scope || document).querySelectorAll('.reveal:not(.in)').forEach(el => revealObserver.observe(el));
+    }
+
+    function onKeyStart(e) {
+      // Ignora modificadoras y atajos (Alt/Ctrl/Shift/⌘, Tab, Esc…) para no romper la intro
+      if (e.ctrlKey || e.metaKey || e.altKey) return;
+      if (['Shift','Control','Alt','Meta','CapsLock','NumLock','ScrollLock','Tab','Escape','ContextMenu','Dead'].includes(e.key)) return;
+      document.removeEventListener('keydown', onKeyStart);
+      startIntro();
+    }
     splash.addEventListener('click', startIntro, { once: true });
-    document.addEventListener('keydown', startIntro, { once: true });
+    document.addEventListener('keydown', onKeyStart);
+
+    /* Fuente única de la URL de descarga: la del JSON-LD sincroniza los botones.
+       Si el JS no corre, los href estáticos del HTML siguen funcionando igual. */
+    function sincronizarDescarga() {
+      try {
+        const ld = JSON.parse(document.querySelector('script[type="application/ld+json"]').textContent);
+        if (ld && ld.downloadUrl) {
+          document.querySelectorAll('a.btn-soul[href*="InstaladorLetraDelta"]').forEach(a => { a.href = ld.downloadUrl; });
+        }
+      } catch (e) { /* se conservan los href estáticos */ }
+    }
 
     window.addEventListener('load', () => {
-        initSounds();
-        showPage('inicio');
+      initSounds();
+      initFaq();
+      initRevealObserver();
+      sincronizarDescarga();
+      showPage('inicio');
     });
 
-    // ── Contador hasta el lanzamiento del parche ──
+    /* Parallax sutil de las flores */
+    window.addEventListener('scroll', () => {
+      const y = Math.min(window.scrollY * 0.08, 40);
+      document.body.style.setProperty('--flores-y', y + 'px');
+    }, { passive: true });
+
+    /* ── Easter egg: diálogos aleatorios ── */
     (function () {
-        // Sábado 11 de julio de 2026, 19:00 (UTC-4). Ajustar si la hora/zona cambia.
-        const targetDate = new Date('2026-07-11T18:33:00-04:00').getTime();
+      const easterEgg = document.getElementById('void-easter-egg');
+      if (!easterEgg) return;
 
-        // ⚠️ REEMPLAZAR por el link real de descarga cuando lo tengas (una sola vez, se usa en los dos lugares).
-        const DOWNLOAD_LINK = '';
+      const PALETA = {
+        white: '#eeeeee', yellow: '#ffe14d', red: '#ff4d4d', green: '#00ff0d',
+        blue: '#3a6eff', cyan: '#5ad9ff', orange: '#ff9d4d', gray: '#777777'
+      };
 
-        const card    = document.getElementById('countdown-card');
-        const elHours = document.getElementById('cd-hours');
-        const elMins  = document.getElementById('cd-mins');
-        const elSecs  = document.getElementById('cd-secs');
+      function parsearColorInline(texto) {
+        return texto.replace(/\[color=([a-zA-Z#0-9]+)\](.*?)\[\/color\]/g, (_, color, contenido) => {
+          const c = PALETA[color] || color;
+          return `<span style="color:${c}">${contenido}</span>`;
+        });
+      }
 
-        // Detecta si la página ya se cargó DESPUÉS de la fecha (o sea, ya se "refrescó").
-        const yaEstabaDisponibleAlCargar = Date.now() >= targetDate;
+      function renderDialogo(grupo) {
+        easterEgg.innerHTML = '';
+        grupo.lineas.forEach((linea) => {
+          const p = document.createElement('p');
+          p.style.color = PALETA[linea.color] || linea.color || PALETA.white;
+          p.innerHTML = parsearColorInline(linea.texto || '');
+          easterEgg.appendChild(p);
+        });
+      }
 
-        // Estado final: la fecha ya pasó y la página se recargó → mostrar la tarjeta completa.
-        function mostrarListo() {
-            if (card) {
-                card.innerHTML =
-                    '<img src="img/screenshot.png" alt="Capítulos 1 al 4" ' +
-                        'style="max-width:200px;width:100%;border-radius:4px;image-rendering:pixelated;margin:0 auto 14px;display:block;">' +
-                    '<h3 style="font-family:\'Determination\',monospace;font-size:0.95em;color:#e0e0e0;letter-spacing:1px;margin:0 0 8px;">Capítulos 1, 2, 3 y 4</h3>' +
-                    '<p style="font-size:0.82em;color:#aaa;margin:0 0 14px;">¡Ya disponible! Capítulo 5 traducido.</p>' +
-                    '<a href="https://drive.google.com/file/d/1MV8axFbbFiUd5-IkW26TlZppVsgrU5pP/view?usp=drive_link" class="download-button ready" target="_blank" rel="noopener noreferrer">Descarga Normal</a>' +
-                    '<a href="https://drive.google.com/file/d/1riZ3MPOU95we5lnXNmPqcUnekEJySNt4/view?usp=drive_link" class="download-button ready" target="_blank" rel="noopener noreferrer" style="margin-top:10px;">Descarga con bordes</a>';
-            }
-        }
+      const FALLBACK = { id: 'fallback', lineas: [
+        { texto: '* ...' },
+        { texto: '* No hay nada por aquí.' },
+        { texto: '* (En serio, puedes volver arriba).', color: 'gray' }
+      ]};
 
-        // Estado de transición: el contador llegó a 0 mientras la persona seguía en la página abierta.
-        function mostrarRefrescar() {
-            if (card) {
-                card.innerHTML = '<p class="countdown-refresh">¡Refresque la página!</p>';
-            }
-        }
+      fetch('data/dialogos.json')
+        .then((res) => { if (!res.ok) throw new Error(); return res.json(); })
+        .then((grupos) => {
+          if (!Array.isArray(grupos) || grupos.length === 0) throw new Error();
+          renderDialogo(grupos[Math.floor(Math.random() * grupos.length)]);
+        })
+        .catch(() => renderDialogo(FALLBACK));
 
-        if (yaEstabaDisponibleAlCargar) {
-            mostrarListo();
-            return;
-        }
-
-        if (!card || !elHours || !elMins || !elSecs) return;
-
-        function pad(n) { return String(n).padStart(2, '0'); }
-
-        let countdownInterval;
-
-        function updateCountdown() {
-            const diff = targetDate - Date.now();
-
-            if (diff <= 0) {
-                clearInterval(countdownInterval);
-                mostrarRefrescar();
-                return;
-            }
-
-            const hours = Math.floor(diff / 3600000);
-            const mins  = Math.floor((diff % 3600000) / 60000);
-            const secs  = Math.floor((diff % 60000) / 1000);
-
-            elHours.textContent = pad(hours);
-            elMins.textContent  = pad(mins);
-            elSecs.textContent  = pad(secs);
-        }
-
-        updateCountdown();
-        countdownInterval = setInterval(updateCountdown, 1000);
+      if ('IntersectionObserver' in window) {
+        const obs = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => { if (entry.isIntersecting) easterEgg.classList.add('visible'); });
+        }, { threshold: 0.3 });
+        obs.observe(easterEgg);
+      } else {
+        easterEgg.classList.add('visible');
+      }
     })();
-</script>
+  </script>
 </body>
 </html>
