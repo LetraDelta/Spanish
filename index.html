@@ -10,7 +10,7 @@
   <meta name="author" content="Equipo Letra Delta">
   <link rel="canonical" href="https://letradelta.github.io/Spanish/">
   <meta property="og:type" content="website">
-  <meta property="og:locale" content="es_LA">
+  <meta property="og:locale" content="es_MX">
   <meta property="og:site_name" content="Letra Delta">
   <meta property="og:title" content="Deltarune en Español | Letra Delta">
   <meta property="og:description" content="Traducción y localización completa al español neutro para los capítulos de Deltarune. ¡Descarga el parche gratis!">
@@ -24,6 +24,7 @@
   <meta name="twitter:title" content="Deltarune en Español | Letra Delta">
   <meta name="twitter:description" content="Parche de localización al español neutro para los capítulos de Deltarune. Creado por fans para la comunidad hispanohablante.">
   <meta name="twitter:image" content="https://letradelta.github.io/Spanish/img/og-image.png">
+  <meta name="twitter:image:alt" content="Deltarune en español neutro — parche de localización del equipo Letra Delta">
   <meta name="theme-color" content="#050507">
   <link rel="icon" href="favicon.png" type="image/png">
   <script type="application/ld+json">
@@ -33,7 +34,7 @@
     "name": "Letra Delta - Parche de Localización de Deltarune al Español",
     "url": "https://letradelta.github.io/Spanish/",
     "downloadUrl": "https://github.com/BroxiCoros/InstaladorLetraDelta/releases/latest",
-    "operatingSystem": "Windows, macOS",
+    "operatingSystem": "Windows, Linux",
     "applicationCategory": "GameApplication",
     "genre": "RPG / Indie / Mod",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
@@ -463,6 +464,65 @@
     }
     .note-warn strong { color: var(--soul); }
 
+    /* ── Bloque desplegable de Android (secundario, oculto por defecto) ── */
+    .android-block { margin-top: 40px; }
+    .android-details {
+      border: 1px solid rgba(58,110,255,0.30); border-radius: 4px;
+      background: linear-gradient(180deg, rgba(58,110,255,0.06), transparent);
+      overflow: hidden;
+    }
+    .android-summary {
+      list-style: none; cursor: pointer; user-select: none;
+      display: flex; align-items: center; gap: 12px; padding: 16px 20px;
+      font-family: 'Determination', monospace; font-size: 0.9rem; letter-spacing: 1px;
+      color: var(--bone); text-transform: uppercase;
+      transition: color 0.15s ease, background 0.15s ease;
+    }
+    .android-summary::-webkit-details-marker { display: none; }
+    .android-summary:hover { color: #fff; background: rgba(58,110,255,0.08); }
+    .android-details[open] .android-summary { border-bottom: 1px solid var(--line); }
+    .android-summary .a-icon { width: 18px; height: 18px; fill: var(--delta-hi); flex: none; }
+    .android-summary .a-tag {
+      font-size: 0.6rem; color: var(--gold); border: 1px solid rgba(255,217,74,0.35);
+      padding: 2px 8px; border-radius: 999px; letter-spacing: 1px;
+    }
+    .android-summary .a-chev {
+      margin-left: auto; color: var(--delta); font-family: 'Determination', monospace;
+      transition: transform 0.25s ease; flex: none;
+    }
+    .android-details[open] .android-summary .a-chev { transform: rotate(90deg); }
+    .android-summary:focus-visible { outline: 2px solid var(--delta); outline-offset: -2px; }
+
+    .android-panel { padding: 20px; }
+    .android-panel p { color: var(--bone-dim); font-size: 0.93rem; line-height: 1.8; margin: 0 0 16px; }
+    .android-panel p strong { color: #fff; }
+    .android-video {
+      width: 100%; border-radius: 4px; border: 1px solid var(--line);
+      display: block; margin-bottom: 18px; background: #000; aspect-ratio: 16/9;
+    }
+    .android-panel .btn-soul { align-self: flex-start; }
+    .android-cred {
+      font-family: 'Determination', monospace; font-size: 0.72rem; color: var(--muted);
+      letter-spacing: 1px; margin: 16px 0 0 !important;
+    }
+    .android-cred strong { color: var(--delta-hi); }
+
+    /* Cuando se entra desde un móvil, Android pasa a primer plano */
+    .android-block.mobile-primary { margin-top: 0; margin-bottom: 40px; }
+    .android-block.mobile-primary .android-details {
+      border-color: var(--delta);
+      box-shadow: 0 0 26px rgba(58,110,255,0.25);
+      background: linear-gradient(180deg, rgba(58,110,255,0.14), rgba(58,110,255,0.02));
+    }
+    .android-block.mobile-primary .android-summary { color: #fff; }
+    .android-summary { flex-wrap: wrap; }
+    .a-hint {
+      display: none; flex-basis: 100%; margin-top: 6px;
+      font-family: 'DeterminationSans', sans-serif; text-transform: none;
+      font-size: 0.78rem; letter-spacing: 0.3px; color: var(--delta-hi);
+    }
+    .android-block.mobile-primary .a-hint { display: block; }
+
     /* ════════════════ EQUIPO ════════════════ */
     #page-equipo { padding: 54px 0 90px; min-height: calc(100vh - var(--nav-h) - var(--foot-h)); }
 
@@ -622,7 +682,7 @@
       <div class="hero-tags">
         <span class="tag gold">Gratis</span>
         <span class="tag">Capítulos 1–5</span>
-        <span class="tag">Windows · macOS</span>
+        <span class="tag">Windows · Linux</span>
         <span class="tag">Compatible con Deltranslate</span>
       </div>
 
@@ -633,7 +693,7 @@
           <h3>Parche de Localización · Cap. 1–5</h3>
           <p>Un solo instalador aplica la traducción completa. Descárgalo, ábrelo y sigue los pasos.</p>
           <a href="https://github.com/BroxiCoros/InstaladorLetraDelta/releases/latest" class="btn-soul" target="_blank" rel="noopener noreferrer">
-            Descargar instalador <span class="meta">· v1.1.0</span>
+            Descargar instalador
           </a>
           <p class="hero-warn"><strong>Requiere una copia limpia:</strong> sin otros parches ni mods. Si ya modificaste el juego, reinstálalo desde Steam antes de aplicar el parche.</p>
         </div>
@@ -672,11 +732,10 @@
         </div>
         <div class="box dl-info">
           <span class="tick-b"></span><span class="tick-c"></span>
-          <span class="ver">VERSIÓN 1.1.0</span>
           <h3>Instalador Letra Delta</h3>
           <p>Aplica la localización al español neutro de los Capítulos 1, 2, 3, 4 y 5 sobre tu copia de Deltarune. Se distribuye como complemento del mod Deltranslate.</p>
           <a href="https://github.com/BroxiCoros/InstaladorLetraDelta/releases/latest" class="btn-soul" target="_blank" rel="noopener noreferrer">Descargar ahora</a>
-          <p class="os-line">WINDOWS · MACOS · ~40 MB</p>
+          <p class="os-line">WINDOWS · LINUX · ~40 MB</p>
         </div>
       </div>
 
@@ -689,6 +748,27 @@
       </div>
 
       <p class="note reveal"><strong>Compatibilidad:</strong> el parche funciona junto al mod Deltranslate de Neprim. Si encuentras un error o una línea sin traducir, cuéntanoslo en nuestro <a href="https://discord.com/invite/39Mu5DFEx7" target="_blank" rel="noopener noreferrer">Discord</a> y lo corregimos.</p>
+
+      <div class="android-block reveal">
+        <details class="android-details">
+          <summary class="android-summary">
+            <svg class="a-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 18a1 1 0 0 0 1 1h1v3.5a1.5 1.5 0 0 0 3 0V19h2v3.5a1.5 1.5 0 0 0 3 0V19h1a1 1 0 0 0 1-1V8H6v10zM3.5 8A1.5 1.5 0 0 0 2 9.5v6a1.5 1.5 0 0 0 3 0v-6A1.5 1.5 0 0 0 3.5 8zm17 0A1.5 1.5 0 0 0 19 9.5v6a1.5 1.5 0 0 0 3 0v-6A1.5 1.5 0 0 0 20.5 8zM15.5 3.06l1.3-1.3a.5.5 0 0 0-.7-.7l-1.48 1.48A6 6 0 0 0 12 2c-.98 0-1.9.24-2.72.66L7.9 1.06a.5.5 0 1 0-.7.7l1.3 1.3A5.99 5.99 0 0 0 6 7h12a5.99 5.99 0 0 0-2.5-3.94zM10 5.5A.75.75 0 1 1 10 4a.75.75 0 0 1 0 1.5zm4 0A.75.75 0 1 1 14 4a.75.75 0 0 1 0 1.5z"/></svg>
+            ¿Juegas en Android?
+            <span class="a-tag">Beta</span>
+            <span class="a-chev">›</span>
+            <span class="a-hint">Parece que entras desde un móvil: esta es la versión para tu dispositivo.</span>
+          </summary>
+          <div class="android-panel">
+            <p>El parche también puede usarse en <strong>Android</strong>, mediante <strong>DeltaQuick</strong>. El proceso es distinto al de PC: mira el tutorial y descarga los archivos desde el enlace de abajo.</p>
+            <!-- NOTA: este es un enlace temporal de Discord (CDN) y caducará. Reemplázalo por un archivo propio, p. ej. img/tuto-android.mp4, o un video de YouTube. -->
+            <video class="android-video" controls playsinline preload="none"
+                   src="https://cdn.discordapp.com/attachments/1459267028589215940/1530761925812551700/tutoandrio.mp4?ex=6a676963&is=6a6617e3&hm=df5fe6d216c1e63e903ef4aa6146350d4ef36f4f61c94255cc967b2000e989ba"></video>
+            <a class="btn-soul" href="https://www.mediafire.com/folder/zjgthzrlkjxyl/Deltranslate+Android" target="_blank" rel="noopener noreferrer">Descargar para Android</a>
+            <p class="os-line">ANDROID · VÍA DELTAQUICK</p>
+            <p class="android-cred">Port de Android por <strong>Vyn_</strong>.</p>
+          </div>
+        </details>
+      </div>
     </div>
   </section>
 
@@ -717,7 +797,7 @@
       <div class="roster">
         <div class="role-card reveal">
           <h4>Traducción</h4>
-          <div class="members"><span class="member">Broxi</span><span class="member">Sketchy</span><span class="member">NoSoyKío</span><span class="member">LinuxPa</span><span class="member">ItsLadyBee</span><span class="member">sweetsparklez</span><span class="member">SHUL_13</span><span class="member">Little Lute</span></div>
+          <div class="members"><span class="member">Broxi</span><span class="member">Sketchy</span><span class="member">NoSoyKío</span><span class="member">LinuxPa</span><span class="member">Saewsde</span><span class="member">ItsLadyBee</span><span class="member">sweetsparklez</span><span class="member">SHUL_13</span><span class="member">Little Lute</span></div>
         </div>
         <div class="role-card reveal">
           <h4>Revisión</h4>
@@ -725,7 +805,7 @@
         </div>
         <div class="role-card reveal">
           <h4>Arte</h4>
-          <div class="members"><span class="member">Sketchy</span><span class="member">NoSoyKío</span><span class="member">Minina 7431</span><span class="member">Mako</span><span class="member">Lein Moriguo</span><span class="member">Broxi</span></div>
+          <div class="members"><span class="member">Sketchy</span><span class="member">NoSoyKío</span><span class="member">Minina 7431</span><span class="member">Mako</span><span class="member">Lein Moriguo</span><span class="member">Broxi</span><span class="member">yeye.ilust</span></div>
         </div>
         <div class="role-card reveal">
           <h4>Programación</h4>
@@ -740,7 +820,7 @@
           <div class="members"><span class="member">Little Lute</span></div>
         </div>
         <div class="role-card reveal">
-          <h4>Tráiler y vídeo dentro del juego</h4>
+          <h4>Tráiler y video dentro del juego</h4>
           <div class="members"><span class="member">LinuxPa</span></div>
         </div>
         <div class="role-card reveal">
@@ -778,8 +858,8 @@
           <div class="faq-a">Sí. Instálalo sobre una copia limpia de Deltarune, sin otros parches ni mods aplicados. Si ya modificaste el juego, lo más sencillo es desinstalarlo y reinstalarlo desde Steam antes de aplicar el parche.</div>
         </div>
         <div class="faq-item reveal">
-          <button class="faq-q">¿Funciona en Mac? <span class="chev">›</span></button>
-          <div class="faq-a">Sí. El parche es compatible con Windows y macOS.</div>
+          <button class="faq-q">¿Funciona en Linux? <span class="chev">›</span></button>
+          <div class="faq-a">Sí. El parche es compatible con Windows y Linux.</div>
         </div>
         <div class="faq-item reveal">
           <button class="faq-q">Encontré un error de traducción, ¿qué hago? <span class="chev">›</span></button>
@@ -807,7 +887,7 @@
         </a>
         <a class="social-card" href="https://www.youtube.com/@linuxPa" target="_blank" rel="noopener noreferrer">
           <img src="img/youtube.png" alt="YouTube">
-          <span class="txt"><span class="plat">YouTube</span><span class="handle">Tráilers y vídeos</span></span>
+          <span class="txt"><span class="plat">YouTube</span><span class="handle">Tráilers y videos</span></span>
         </a>
       </div>
     </div>
@@ -965,12 +1045,32 @@
       } catch (e) { /* se conservan los href estáticos */ }
     }
 
+    /* En móviles, la sección de Android sube al inicio de Descargas y se abre sola.
+       Si el JS no corre, queda como un desplegable secundario normal. */
+    function promoverAndroidEnMovil() {
+      const esMovil =
+        /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent) ||
+        (navigator.maxTouchPoints > 0 && window.matchMedia('(max-width: 820px)').matches);
+      if (!esMovil) return;
+
+      const bloque = document.querySelector('#page-descargas .android-block');
+      const dlMain = document.querySelector('#page-descargas .dl-main');
+      if (!bloque || !dlMain) return;
+
+      dlMain.parentNode.insertBefore(bloque, dlMain);
+      bloque.classList.add('mobile-primary', 'in');
+      const det = bloque.querySelector('.android-details');
+      if (det) det.open = true;
+    }
+
     window.addEventListener('load', () => {
       initSounds();
       initFaq();
       initRevealObserver();
       sincronizarDescarga();
       showPage('inicio');
+      observarReveals(document.querySelector('.page.active'));
+      promoverAndroidEnMovil();
     });
 
     /* Parallax sutil de las flores */
